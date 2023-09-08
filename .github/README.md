@@ -22,23 +22,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/BrammyS/Media-Frame">
+  <a href="https://github.com/BrammyS/GalleryPixels">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Media Frame</h3>
+<h3 align="center">GalleryPixels</h3>
 
   <p align="center">
-    A Photography and Videography Media catalog website.
+    A Photography and Videography catalog website.
     <br />
-    <a href="https://github.com/BrammyS/Media-Frame"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/BrammyS/GalleryPixels"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/BrammyS/Media-Frame">View Demo</a>
+    <a href="https://github.com/BrammyS/GalleryPixels">View Demo</a>
     ·
-    <a href="https://github.com/BrammyS/Media-Frame/issues">Report Bug</a>
+    <a href="https://github.com/BrammyS/GalleryPixels/issues">Report Bug</a>
     ·
-    <a href="https://github.com/BrammyS/Media-Frame/issues">Request Feature</a>
+    <a href="https://github.com/BrammyS/GalleryPixels/issues">Request Feature</a>
   </p>
 </div>
 
@@ -116,7 +116,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/BrammyS/Media-Frame.git
+   git clone https://github.com/BrammyS/GalleryPixels.git
    ```
 3. Install NPM packages
    ```sh
@@ -150,7 +150,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/BrammyS/Media-Frame/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/BrammyS/GalleryPixels/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -196,14 +196,14 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/BrammyS/Media-Frame.svg?style=for-the-badge
-[contributors-url]: https://github.com/BrammyS/Media-Frame/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/BrammyS/Media-Frame.svg?style=for-the-badge
-[forks-url]: https://github.com/BrammyS/Media-Frame/network/members
-[stars-shield]: https://img.shields.io/github/stars/BrammyS/Media-Frame.svg?style=for-the-badge
-[stars-url]: https://github.com/BrammyS/Media-Frame/stargazers
-[issues-shield]: https://img.shields.io/github/issues/BrammyS/Media-Frame.svg?style=for-the-badge
-[issues-url]: https://github.com/BrammyS/Media-Frame/issues
-[license-shield]: https://img.shields.io/github/license/BrammyS/Media-Frame.svg?style=for-the-badge
-[license-url]: https://github.com/BrammyS/Media-Frame/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/BrammyS/GalleryPixels.svg?style=for-the-badge
+[contributors-url]: https://github.com/BrammyS/GalleryPixels/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/BrammyS/GalleryPixels.svg?style=for-the-badge
+[forks-url]: https://github.com/BrammyS/GalleryPixels/network/members
+[stars-shield]: https://img.shields.io/github/stars/BrammyS/GalleryPixels.svg?style=for-the-badge
+[stars-url]: https://github.com/BrammyS/GalleryPixels/stargazers
+[issues-shield]: https://img.shields.io/github/issues/BrammyS/GalleryPixels.svg?style=for-the-badge
+[issues-url]: https://github.com/BrammyS/GalleryPixels/issues
+[license-shield]: https://img.shields.io/github/license/BrammyS/GalleryPixels.svg?style=for-the-badge
+[license-url]: https://github.com/BrammyS/GalleryPixels/blob/master/LICENSE
 [product-screenshot]: images/screenshot.png
