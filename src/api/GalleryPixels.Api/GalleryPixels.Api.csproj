@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNet.WebApi.Versioning" Version="5.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
@@ -17,5 +18,15 @@
         <Link>.dockerignore</Link>
       </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GalleryPixels.Api.Application\GalleryPixels.Api.Application.csproj" />
+      <ProjectReference Include="..\GalleryPixels.Api.Infrastructure\GalleryPixels.Api.Infrastructure.csproj" />
+    </ItemGroup>
+
+
+    <PropertyGroup>
+        <SourceRevisionId>build$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))</SourceRevisionId>
+    </PropertyGroup>
 
 </Project>
