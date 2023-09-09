@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GalleryPixels.Domain\GalleryPixels.Domain.csproj" />
+      <ProjectReference Include="..\GalleryPixels.UI.Application\GalleryPixels.UI.Application.csproj" />
     </ItemGroup>
 
 </Project>

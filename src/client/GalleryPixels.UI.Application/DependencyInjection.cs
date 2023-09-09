@@ -1,7 +1,7 @@
-﻿using GalleryPixels.Domain;
+﻿using GalleryPixels.UI.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GalleryPixels.Application;
+namespace GalleryPixels.UI.Application;
 
 public static class DependencyInjection
 {

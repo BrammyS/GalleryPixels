@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 
 LABEL maintainer="BrammyS <https://github.com/BrammyS>"
 LABEL org.label-schema.name="GalleryPixels"
-LABEL org.label-schema.description="The official web application for GalleryPixels"
+LABEL org.label-schema.description="The official API for GalleryPixels"
 LABEL org.label-schema.vendor="Esendam Software"
 LABEL org.label-schema.url="https://GalleryPixels.com"
 
@@ -17,13 +17,13 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 # Setup workspace
 WORKDIR /src
 COPY /src .
-WORKDIR /src/GalleryPixels.Web
+WORKDIR /src/api/GalleryPixels.Api
 
 # Restore dependencies
-RUN dotnet restore "GalleryPixels.Web.csproj"
+RUN dotnet restore "GalleryPixels.Api.csproj"
 
 # Publish the application
-RUN dotnet publish "GalleryPixels.Web.csproj" \
+RUN dotnet publish "GalleryPixels.Api.csproj" \
     -c Release \
     -o /app/publish \
     --no-restore
@@ -31,4 +31,4 @@ RUN dotnet publish "GalleryPixels.Web.csproj" \
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "GalleryPixels.Web.dll"]
+ENTRYPOINT ["dotnet", "GalleryPixels.Api.dll"]

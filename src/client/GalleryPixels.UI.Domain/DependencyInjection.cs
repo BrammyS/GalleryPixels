@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace GalleryPixels.Domain;
+namespace GalleryPixels.UI.Domain;
 
 public static class DependencyInjection
 {
