@@ -1,5 +1,35 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime Js
+@inject NavigationManager MyNavigationManager
 
-<main>
-    @Body
-</main>
+<div class="min-h-screen flex flex-col">
+    <main class="flex flex-1 justify-center overflow-x-hidden">
+        <article>
+            @Body
+        </article>
+    </main>
+</div>
+
+@code{
+
+#if DEBUG
+    /// <inheritdoc />
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await AddDebugTailwindCdn(firstRender);
+    }
+
+    private async Task AddDebugTailwindCdn(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Js.InvokeVoidAsync("loadJs", "https://cdn.tailwindcss.com/");
+        }
+
+    // This needs the be loaded on every refresh because god has designed it this way.
+    // Otherwise things will just start breaking for some reason?!?!?!?!?!
+        await Js.InvokeVoidAsync("loadJs", $"{MyNavigationManager.BaseUri}/js/TailwindCdnConfig.js");
+    }
+#endif
+
+}
