@@ -12,12 +12,12 @@ public static class DependencyInjection
     public static IServiceCollection RegisterApplication(this IServiceCollection services)
     {
         services.RegisterDomain();
-        
+
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
         services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformancePipelineBehaviour<,>)); // 1st
         services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>)); // 2nd
-        
+
         services.AddMediator(
             options =>
             {
@@ -25,7 +25,7 @@ public static class DependencyInjection
                 options.ServiceLifetime = ServiceLifetime.Transient;
             }
         );
-        
+
         return services;
     }
 }

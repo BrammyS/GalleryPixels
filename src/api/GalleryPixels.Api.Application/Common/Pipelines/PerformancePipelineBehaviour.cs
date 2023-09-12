@@ -4,7 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace GalleryPixels.Api.Application.Common.Pipelines;
 
-public class PerformancePipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+public class PerformancePipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
 {
     private readonly ILogger<PerformancePipelineBehaviour<TRequest, TResponse>> _logger;
 
@@ -13,7 +14,11 @@ public class PerformancePipelineBehaviour<TRequest, TResponse> : IPipelineBehavi
         _logger = logger;
     }
 
-    public async ValueTask<TResponse> Handle(TRequest request, CancellationToken cancellationToken, MessageHandlerDelegate<TRequest, TResponse> next)
+    public async ValueTask<TResponse> Handle(
+        TRequest request,
+        CancellationToken cancellationToken,
+        MessageHandlerDelegate<TRequest, TResponse> next
+    )
     {
         var startTime = Stopwatch.GetTimestamp();
         var response = await next(request, cancellationToken).ConfigureAwait(false);
