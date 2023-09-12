@@ -1,5 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="npx ci --prefer-offline" />
+        <Exec Command="npm run buildcss" />
+        <Exec Command="npm run minifycss" />
+    </Target>
+    
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
@@ -15,8 +21,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GalleryPixels.UI.Application\GalleryPixels.UI.Application.csproj" />
-      <ProjectReference Include="..\GalleryPixels.UI.Infrastructure\GalleryPixels.UI.Infrastructure.csproj" />
+        <ProjectReference Include="..\GalleryPixels.UI.Application\GalleryPixels.UI.Application.csproj"/>
+        <ProjectReference Include="..\GalleryPixels.UI.Infrastructure\GalleryPixels.UI.Infrastructure.csproj"/>
     </ItemGroup>
+
 
 </Project>
