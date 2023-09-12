@@ -11,18 +11,7 @@ module.exports = {
     ],
     theme: {
         extend: {
-            backgroundImage: {
-                // Premium patterns
-                'premium-pattern-light': "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://cdn.colorchan.com/site/gradiant_bg_8bit_comp.png')",
-                'premium-pattern': "url('https://cdn.colorchan.com/site/gradiant_bg_8bit_comp.png')",
-                // Color circles
-                'color-circle': "url('https://cdn.colorchan.com/site/color-circle.webp')",
-                'color-circle-opaque': "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://cdn.colorchan.com/site/color-circle.webp')",
-                // Footer
-                'footer': "url('https://cdn.colorchan.com/site/footer-bg.png')",
-                // Index header
-                'header': "url('https://cdn.colorchan.com/site/index-header-circle-bg-comp.webp')"
-            },
+            backgroundImage: {},
             backgroundSize: {
                 '100%': '100%',
                 '75%': '75%',
@@ -31,7 +20,34 @@ module.exports = {
             },
             colors: {
                 'ultra-light-gray': '#fcfcfc',
-                'discord': '#7289DA'
+                'discord': '#7289DA',
+                
+                // Main color pallet
+                'primary': withOpacityValue('#009c82'),
+                'primary-dark': withOpacityValue('#53ceb1'),
+                'primary-variant': withOpacityValue('#85cee4'),
+                'primary-variant-dark': withOpacityValue('#b8ffff'),
+                'secondary': withOpacityValue('#c6c5bf'),
+                'secondary-variant': withOpacityValue('#c6c5bf'),
+                'secondary-dark': withOpacityValue('#f9f8f2'),
+                'background': withOpacityValue('#F4F4F4'),
+                'background-dark': withOpacityValue('#121212'),
+                'surface': withOpacityValue('#FFFFFF'),
+                'surface-dark': withOpacityValue('#333333'),
+                'error': withOpacityValue('#B00020'),
+                'error-dark': withOpacityValue('#CF6679'),
+                'on-primary': withOpacityValue('#FFFFFF'),
+                'on-primary-dark': withOpacityValue('#000000'),
+                'on-primary-variant': withOpacityValue('#000000'),
+                'on-primary-variant-dark': withOpacityValue('#000000'),
+                'on-secondary': withOpacityValue('#000000'),
+                'on-secondary-dark': withOpacityValue('#000000'),
+                'on-background': withOpacityValue('#000000'),
+                'on-background-dark': withOpacityValue('#FFFFFF'),
+                'on-surface': withOpacityValue('#000000'),
+                'on-surface-dark': withOpacityValue('#FFFFFF'),
+                'on-error': withOpacityValue('#FFFFFF'),
+                'on-error-dark': withOpacityValue('#000000')
             },
             height: {
                 '88': '22rem',
@@ -61,4 +77,17 @@ module.exports = {
     },
     variants: {},
     plugins: [],
+}
+
+function withOpacityValue(hex) {
+    const red = parseInt(hex[1] + hex[2], 16);
+    const green = parseInt(hex[3] + hex[4], 16);
+    const blue = parseInt(hex[5] + hex[6], 16);
+
+    return ({opacityValue}) => {
+        if (opacityValue === undefined) {
+            return `rgb(${red} ${green} ${blue})`
+        }
+        return `rgb(${red} ${green} ${blue} / ${opacityValue})`
+    }
 }
