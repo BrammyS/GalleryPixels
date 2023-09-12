@@ -1,7 +1,6 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Web.Http;
 
 namespace GalleryPixels.Api.Controllers;
 
