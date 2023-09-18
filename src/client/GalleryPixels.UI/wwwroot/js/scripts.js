@@ -28,6 +28,15 @@ function isDarkMode() {
     return localStorage.theme === 'dark';
 }
 
+function initMasonry(containerSelector, itemSelector, gutterSize, transitionDuration) {
+    const masonry = new Masonry(containerSelector, {
+        gutter: gutterSize,
+        transitionDuration: transitionDuration,
+        itemSelector: itemSelector,
+        columnWidth: 300
+    });
+}
+
 // noinspection JSUnusedGlobalSymbols
 function loadJs(sourceUrl, shouldDefer) {
     if (sourceUrl.Length === 0) {

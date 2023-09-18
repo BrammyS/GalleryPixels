@@ -10,8 +10,29 @@
     <link href="css/site.min.css" rel="stylesheet"/>
 
     <!-- JS-->
-    <script src="js/scripts.js"></script>
-    
+    <script src="js/scripts.js" defer></script>
+    <script src="js/lazysizes.min.js" defer></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <style>
+        .ratio-box {
+            position: relative;
+            height: 0;
+            display: block;
+            width: 100%;
+            /* padding-bottom is calculated and rendered in to HTML */
+        }
+
+        .ratio-box img,
+        .ratio-box iframe,
+        .ratio-box video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="GalleryPixels.UI.styles.css" rel="stylesheet" /> -->
 </head>
