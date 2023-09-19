@@ -11,21 +11,17 @@ public class MasonryGrid : IMasonryGrid
         _jsRuntime = jSRuntime;
     }
 
-    public ValueTask Init(
+    public ValueTask InitAsync(
         string containerSelector,
-        string itemSelector,
         int gutterSize,
-        float transitionDurationSecs = .5F
+        int items
     )
     {
-        var transitionDurationStr = $"{transitionDurationSecs}s";
-
         return _jsRuntime.InvokeVoidAsync(
             "initMasonry",
             containerSelector,
-            itemSelector,
             gutterSize,
-            transitionDurationStr
+            items
         );
     }
 }

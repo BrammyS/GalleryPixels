@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
- .ratio-container {
-     position: relative;
- }
-.ratio-container:after {
-    content: '';
-    display: block;
-    height: 0;
-    width: 100%;
-    /* 16:9 = 56.25% = calc(9 / 16 * 100%) */
-    padding-bottom: 42.86%;
-}
-.ratio-container > * {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
 .loader div {
     animation-duration: 0.5s;
 }

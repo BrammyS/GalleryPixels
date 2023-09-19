@@ -28,13 +28,17 @@ function isDarkMode() {
     return localStorage.theme === 'dark';
 }
 
-function initMasonry(containerSelector, itemSelector, gutterSize, transitionDuration) {
-    const masonry = new Masonry(containerSelector, {
-        gutter: gutterSize,
-        transitionDuration: transitionDuration,
-        itemSelector: itemSelector,
-        columnWidth: 300
+function initMasonry(containerSelector, gutterSize, items) {
+    let magicGrid = new MagicGrid({
+        container: '.container',
+        animate: true,
+        gutter: 30,
+        items: 10,
+        useMin: true,
+        center: false
     });
+
+    magicGrid.listen();
 }
 
 // noinspection JSUnusedGlobalSymbols

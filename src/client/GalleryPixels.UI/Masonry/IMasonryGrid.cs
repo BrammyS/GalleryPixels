@@ -2,10 +2,9 @@
 
 public interface IMasonryGrid
 {
-    ValueTask Init(
+    ValueTask InitAsync(
         string containerSelector,
-        string itemSelector,
         int gutterSize,
-        float transitionDurationSecs = .5f
+        int items
     );
 }
