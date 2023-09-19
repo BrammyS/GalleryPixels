@@ -30,10 +30,10 @@ function isDarkMode() {
 
 function initMasonry(containerSelector, gutterSize, items) {
     let magicGrid = new MagicGrid({
-        container: '.container',
+        container: containerSelector,
         animate: true,
-        gutter: 30,
-        items: 10,
+        gutter: gutterSize,
+        items: items,
         useMin: true,
         center: false
     });

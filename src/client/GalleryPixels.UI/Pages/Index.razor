@@ -6,10 +6,10 @@
 @inject IImagePlaceHolderService ImageService
 
 <div class="container">
-    @for (var i = 0; i < Media.Count; i++)
+    @foreach (var media in Media)
     {
         <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
-            <img class="lazyload rounded-md before:bg-black w-full object-cover" data-src="@Media[i].Url" width="@(Media[i].Width)" height="@(Media[i].Height)">
+            <img class="lazyload rounded-md before:bg-black w-full object-cover" data-src="@media.Url" width="@media.Width" height="@media.Height">
         </div>
     }
 </div>
@@ -30,6 +30,6 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await MasonryGrid.InitAsync($".{MasonryGridId}", 20, Media.Count);
+        await MasonryGrid.InitAsync($".{MasonryGridId}", 30, Media.Count);
     }
 }
