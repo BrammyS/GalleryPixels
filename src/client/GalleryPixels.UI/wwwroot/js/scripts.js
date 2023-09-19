@@ -28,6 +28,19 @@ function isDarkMode() {
     return localStorage.theme === 'dark';
 }
 
+function initMasonry(containerSelector, gutterSize, items) {
+    let magicGrid = new MagicGrid({
+        container: containerSelector,
+        animate: true,
+        gutter: gutterSize,
+        items: items,
+        useMin: true,
+        center: false
+    });
+
+    magicGrid.listen();
+}
+
 // noinspection JSUnusedGlobalSymbols
 function loadJs(sourceUrl, shouldDefer) {
     if (sourceUrl.Length === 0) {
