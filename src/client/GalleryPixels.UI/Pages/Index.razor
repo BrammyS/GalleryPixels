@@ -9,9 +9,7 @@
     @for (var i = 0; i < Media.Count; i++)
     {
         <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
-            <div style="">
-                <img class="lazyload rounded-md" data-src="@Media[i].Url" width="@(Media[i].Width)" height="@(Media[i].Height)" style="object-fit: cover;">
-            </div>
+            <img class="lazyload rounded-md before:bg-black w-full object-cover" data-src="@Media[i].Url" width="@(Media[i].Width)" height="@(Media[i].Height)">
         </div>
     }
 </div>
