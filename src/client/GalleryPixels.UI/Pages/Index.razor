@@ -9,12 +9,13 @@
     @for (var i = 0; i < Media.Count; i++)
     {
         <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
-            <div style="width: @(Media[i].Width)px; height: @(Media[i].Height)px;">
-                <img class="lazyload rounded-md" data-src="@Media[i].Url">
+            <div style="">
+                <img class="lazyload rounded-md" data-src="@Media[i].Url" width="@(Media[i].Width)" height="@(Media[i].Height)" style="object-fit: cover;">
             </div>
         </div>
     }
 </div>
+
 
 @code
 {
@@ -23,7 +24,7 @@
 
     protected override void OnInitialized()
     {
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 100; i++)
         {
             Media.Add(ImageService.GetRandomImagePlaceHolder());
         }
