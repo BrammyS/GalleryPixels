@@ -5,7 +5,7 @@
 @inject IMasonryGrid MasonryGrid
 @inject IImagePlaceHolderService ImageService
 
-<div class="@MasonryGridId">
+<div class="@MasonryGridId" style="width: 100% !important;">
     @foreach (var media in Media)
     {
         <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
@@ -17,7 +17,7 @@
 @code
 {
     private List<Media> Media { get; set; } = new();
-    private string MasonryGridId { get; set; } = "container";
+    private string MasonryGridId { get; set; } = "masonry";
 
     protected override void OnInitialized()
     {
