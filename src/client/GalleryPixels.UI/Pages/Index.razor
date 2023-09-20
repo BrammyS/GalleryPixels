@@ -1,34 +1,3 @@
 ﻿@page "/"
-@using GalleryPixels.UI.Masonry
-@using GalleryPixels.UI.Domain.Services
-@using GalleryPixels.UI.Domain.Models
-@inject IMasonryGrid MasonryGrid
-@inject IImagePlaceHolderService ImageService
 
-<div class="@MasonryGridId" style="width: 100% !important;">
-    @foreach (var media in Media)
-    {
-        <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
-            <img class="lazyload rounded-md w-full object-cover" data-src="@media.Url" width="@media.Width" height="@media.Height" alt="">
-        </div>
-    }
-</div>
-
-@code
-{
-    private List<Media> Media { get; set; } = new();
-    private string MasonryGridId { get; set; } = "masonry";
-
-    protected override void OnInitialized()
-    {
-        for (var i = 0; i < 100; i++)
-        {
-            Media.Add(ImageService.GetRandomImagePlaceHolder());
-        }
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await MasonryGrid.InitAsync($".{MasonryGridId}", 30, Media.Count);
-    }
-}
+<MasonryGrid/>

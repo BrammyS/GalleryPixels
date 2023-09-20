@@ -9,7 +9,7 @@ public static class DependencyInjection
     // ReSharper disable once InconsistentNaming
     public static IServiceCollection RegisterUI(this IServiceCollection services)
     {
-        services.AddScoped<IMasonryGrid, MasonryGrid>();
+        services.AddScoped<IMagicGrid, MagicGrid>();
         
         return services
             .RegisterApplication()
