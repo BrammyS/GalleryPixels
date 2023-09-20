@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+img[src=""],
+img:not([src]){
+    opacity: 0;
+}
+
+img[src]{
+    opacity: 1;
+}
+
+
 .loader div {
     animation-duration: 0.5s;
 }
