@@ -2,11 +2,11 @@
 
 namespace GalleryPixels.UI.Masonry;
 
-public class MasonryGrid : IMasonryGrid
+public class MagicGrid : IMagicGrid
 {
     private readonly IJSRuntime _jsRuntime;
 
-    public MasonryGrid(IJSRuntime jSRuntime)
+    public MagicGrid(IJSRuntime jSRuntime)
     {
         _jsRuntime = jSRuntime;
     }
