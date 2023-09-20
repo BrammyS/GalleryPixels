@@ -7,16 +7,29 @@
 <div class="@MasonryGridId" style="width: 100% !important;">
     @foreach (var media in Media)
     {
-        <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
-            <img class="lazyload rounded-md w-full object-cover" data-src="@media.Url" width="@media.Width" height="@media.Height" alt="">
+        <div class="w-[100%] md:w-[40%] 2xl:w-[25%]" @onclick="() => ShowModal(media.Url)">
+            <img class="lazyload rounded-md w-full object-cover cursor-pointer" data-src="@media.Url" width="@media.Width" height="@media.Height" alt="">
         </div>
     }
 </div>
 
+<!-- Img modal -->
+<div class="@(_showModal ? "" : "hidden") fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
+    <!-- The close button -->
+    <div class="fixed inset-0 transition-opacity cursor-pointer" @onclick="CloseModal"></div>
+    <a class="fixed z-90 top-4 right-8 text-white text-5xl font-bold cursor-pointer" @onclick="CloseModal">
+        &times;
+    </a>
+
+    <img class="object-cover h-[90%] transform" src="@ModalImg" alt=""/>
+</div>
+
 @code
 {
+    private bool _showModal = false;
     private List<Media> Media { get; set; } = new();
     private string MasonryGridId { get; set; } = "masonry";
+    private string ModalImg { get; set; } = "https://cdn.brammys.com/2023/09/w94gGyu2CFp0yayWHSD2rRRofs4wICxzSQEvu2Ifqny6PqvegGTpyhchiCWGf38u.png";
 
     protected override void OnInitialized()
     {
@@ -29,5 +42,16 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await MagicGrid.InitAsync($".{MasonryGridId}", 30, Media.Count);
+    }
+
+    private void ShowModal(string url)
+    {
+        ModalImg = url;
+        _showModal = true;
+    }
+
+    private void CloseModal()
+    {
+        _showModal = false;
     }
 }
