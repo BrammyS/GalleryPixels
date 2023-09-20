@@ -9,7 +9,7 @@
     @foreach (var media in Media)
     {
         <div class="w-[100%] md:w-[40%] 2xl:w-[25%]">
-            <img class="lazyload rounded-md before:bg-black w-full object-cover" data-src="@media.Url" width="@media.Width" height="@media.Height">
+            <img class="lazyload rounded-md w-full object-cover" data-src="@media.Url" width="@media.Width" height="@media.Height" alt="">
         </div>
     }
 </div>
