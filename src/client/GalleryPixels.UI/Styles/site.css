@@ -20,11 +20,11 @@
 
 /* Lazy load border buf fix */
 img[src=""],
-img:not([src]){
+img:not([src]) {
     opacity: 0;
 }
 
-img[src]{
+img[src] {
     opacity: 1;
 }
 

@@ -22,7 +22,7 @@ public static class DependencyInjection
                 options.ServiceLifetime = ServiceLifetime.Transient;
             }
         );
-        
+
         services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformancePipelineBehaviour<,>)); // 1st
         services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>)); // 2nd
 

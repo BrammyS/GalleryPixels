@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="npx ci --prefer-offline" />
-        <Exec Command="npm run buildcss" />
-        <Exec Command="npm run minifycss" />
+        <Exec Command="npx ci --prefer-offline"/>
+        <Exec Command="npm run buildcss"/>
+        <Exec Command="npm run minifycss"/>
     </Target>
-    
+
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BlazorPro.BlazorSize" Version="6.2.2" />
+        <PackageReference Include="BlazorPro.BlazorSize" Version="6.2.2"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all"/>
     </ItemGroup>
@@ -27,8 +27,6 @@
 
 
     </ItemGroup>
-
-
 
 
 </Project>
