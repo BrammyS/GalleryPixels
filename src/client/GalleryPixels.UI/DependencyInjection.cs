@@ -13,7 +13,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IMagicGrid, MagicGrid>();
         services.AddScoped<IResizeListener, ResizeListener>();
-        
+
         return services
             .RegisterApplication()
             .RegisterInfrastructure();

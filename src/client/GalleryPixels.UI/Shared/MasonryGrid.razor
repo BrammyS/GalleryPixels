@@ -1,9 +1,9 @@
-﻿@using GalleryPixels.UI.Domain.Services
-@using GalleryPixels.UI.Domain.Models
-@using GalleryPixels.UI.Application.Services
-@inject IImagePlaceHolderService ImageService
+﻿@inject IImagePlaceHolderService ImageService
 @inject IMagicGrid MagicGrid
 @inject IResizeListener Listener
+@using GalleryPixels.UI.Domain.Models
+@using GalleryPixels.UI.Domain.Services
+@using GalleryPixels.UI.Application.Services
 @implements IDisposable
 
 <div class="@MasonryGridId" style="width: 100% !important;">
@@ -17,7 +17,7 @@
 </div>
 
 <!-- Img modal -->
-<div class="@(_showModal && ModalImg != null ? "" : "hidden") fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
+<div class="@(ModalImg != null ? "" : "hidden") fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
     <!--  Clickable close background -->
     <div class="fixed z-90 inset-0 transition-opacity cursor-pointer" @onclick="CloseModal"></div>
 
@@ -33,7 +33,6 @@
 
 @code
 {
-    private bool _showModal = false;
     private List<Media> Media { get; set; } = new();
     private string MasonryGridId { get; set; } = "masonry";
     private Media? ModalImg { get; set; }
@@ -62,7 +61,7 @@
             return;
 
         var scaleW = Window.Width * 0.95 / ModalImg.Width;
-        var scaleH = Window.Height * 0.95/ ModalImg.Height;
+        var scaleH = Window.Height * 0.95 / ModalImg.Height;
 
         ModalScale = Math.Min(scaleH, scaleW);
 
@@ -74,12 +73,11 @@
     {
         ModalImg = media;
         SetModalScale();
-        _showModal = true;
     }
 
     private void CloseModal()
     {
-        _showModal = false;
+        ModalImg = null;
     }
 
     private void WindowResized(object? _, BrowserWindowSize window)

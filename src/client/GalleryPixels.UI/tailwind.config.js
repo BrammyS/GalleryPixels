@@ -21,7 +21,7 @@ module.exports = {
             colors: {
                 'ultra-light-gray': '#fcfcfc',
                 'discord': '#7289DA',
-                
+
                 // Main color pallet
                 'primary': withOpacityValue('#009c82'),
                 'primary-dark': withOpacityValue('#53ceb1'),
