@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-img[src=""],
-img:not([src]){
-    opacity: 0;
-}
-
-img[src]{
-    opacity: 1;
-}
-
-
 .loader div {
     animation-duration: 0.5s;
 }
@@ -26,6 +16,16 @@ img[src]{
 
 .loader div:nth-child(3) {
     animation-delay: 0.6s;
+}
+
+/* Lazy load border buf fix */
+img[src=""],
+img:not([src]){
+    opacity: 0;
+}
+
+img[src]{
+    opacity: 1;
 }
 
 /* Blazor */
