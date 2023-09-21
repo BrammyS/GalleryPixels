@@ -1,6 +1,7 @@
-﻿using Microsoft.JSInterop;
+﻿using GalleryPixels.UI.Application.Services;
+using Microsoft.JSInterop;
 
-namespace GalleryPixels.UI.Masonry;
+namespace GalleryPixels.UI.Services;
 
 public class MagicGrid : IMagicGrid
 {

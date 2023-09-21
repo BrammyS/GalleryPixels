@@ -1,7 +1,8 @@
 ﻿using BlazorPro.BlazorSize;
 using GalleryPixels.UI.Application;
+using GalleryPixels.UI.Application.Services;
 using GalleryPixels.UI.Infrastructure;
-using GalleryPixels.UI.Masonry;
+using GalleryPixels.UI.Services;
 
 namespace GalleryPixels.UI;
 
