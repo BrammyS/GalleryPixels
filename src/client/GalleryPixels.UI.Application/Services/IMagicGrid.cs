@@ -1,4 +1,4 @@
-﻿namespace GalleryPixels.UI.Masonry;
+﻿namespace GalleryPixels.UI.Application.Services;
 
 public interface IMagicGrid
 {
