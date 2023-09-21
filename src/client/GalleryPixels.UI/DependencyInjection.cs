@@ -1,4 +1,5 @@
-﻿using GalleryPixels.UI.Application;
+﻿using BlazorPro.BlazorSize;
+using GalleryPixels.UI.Application;
 using GalleryPixels.UI.Infrastructure;
 using GalleryPixels.UI.Masonry;
 
@@ -10,6 +11,7 @@ public static class DependencyInjection
     public static IServiceCollection RegisterUI(this IServiceCollection services)
     {
         services.AddScoped<IMagicGrid, MagicGrid>();
+        services.AddScoped<IResizeListener, ResizeListener>();
         
         return services
             .RegisterApplication()
