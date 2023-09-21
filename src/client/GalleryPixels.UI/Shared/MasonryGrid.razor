@@ -1,15 +1,16 @@
-﻿@using GalleryPixels.UI.Masonry
-@using GalleryPixels.UI.Domain.Services
+﻿@using GalleryPixels.UI.Domain.Services
 @using GalleryPixels.UI.Domain.Models
+@using GalleryPixels.UI.Application.Services
 @inject IImagePlaceHolderService ImageService
 @inject IMagicGrid MagicGrid
-@inject IResizeListener listener
+@inject IResizeListener Listener
 @implements IDisposable
 
 <div class="@MasonryGridId" style="width: 100% !important;">
     @foreach (var media in Media)
     {
         <div class="flex justify-center items-center max-w-3xl w-[100%] lg:w-[40%] 2xl:w-[25%] px-6 lg:px-0" @onclick="() => ShowModal(media)">
+            <!--suppress RequiredAttributes -->
             <img class="lazyload rounded-md w-full object-contain cursor-pointer" data-src="@media.Url" width="@media.Width" height="@media.Height" alt="">
         </div>
     }
@@ -20,7 +21,7 @@
     <!--  Clickable close background -->
     <div class="fixed z-90 inset-0 transition-opacity cursor-pointer" @onclick="CloseModal"></div>
 
-    <img class="object-contain @(ModalScale > 1 ? $"scale-[{ModalScale}]" : "") max-h-full max-w-full transform" src="@ModalImg?.Url" alt=""/>
+    <img class="@(ModalScale > 1 ? $"scale-[{ModalScale}]" : "") p-4 max-h-[90%] max-w-[90%] object-contain transform" src="@ModalImg?.Url" alt=""/>
 
     <!-- The close button -->
     <a class="fixed z-90 top-4 right-8 p-1 rounded-xl bg-surface/90 dark:bg-surface-dark/90 text-on-surface dark:text-on-surface-dark text-5xl font-bold cursor-pointer" @onclick="CloseModal">
@@ -36,7 +37,7 @@
     private List<Media> Media { get; set; } = new();
     private string MasonryGridId { get; set; } = "masonry";
     private Media? ModalImg { get; set; }
-    private float ModalScale { get; set; }
+    private double ModalScale { get; set; }
     private BrowserWindowSize? Window { get; set; }
 
     protected override void OnInitialized()
@@ -52,9 +53,21 @@
         await MagicGrid.InitAsync($".{MasonryGridId}", 30, Media.Count);
 
         if (firstRender)
-        {
-            listener.OnResized += WindowResized;
-        }
+            Listener.OnResized += WindowResized;
+    }
+
+    private void SetModalScale()
+    {
+        if (Window == null || ModalImg == null)
+            return;
+
+        var scaleW = Window.Width * 0.95 / ModalImg.Width;
+        var scaleH = Window.Height * 0.95/ ModalImg.Height;
+
+        ModalScale = Math.Min(scaleH, scaleW);
+
+        if (ModalScale < 1)
+            ModalScale = 1;
     }
 
     private void ShowModal(Media media)
@@ -64,23 +77,12 @@
         _showModal = true;
     }
 
-    private void SetModalScale()
-    {
-        if (Window == null || ModalImg == null)
-            return;
-
-        var scaleW = (float)Window.Width / ModalImg.Width;
-        var scaleH = (float)Window.Height / ModalImg.Height;
-        ModalScale = Math.Min(scaleH, scaleW);
-        Console.WriteLine($"ModalScale: {ModalScale}");
-    }
-
     private void CloseModal()
     {
         _showModal = false;
     }
 
-    private void WindowResized(object _, BrowserWindowSize window)
+    private void WindowResized(object? _, BrowserWindowSize window)
     {
         Window = window;
         SetModalScale();
@@ -89,6 +91,6 @@
 
     void IDisposable.Dispose()
     {
-        listener.OnResized -= WindowResized;
+        Listener.OnResized -= WindowResized;
     }
 }
