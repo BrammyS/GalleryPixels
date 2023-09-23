@@ -67,6 +67,9 @@
 
         if (ModalScale < 1)
             ModalScale = 1;
+        
+        Console.WriteLine($"Window resized to {Window.Width}x{Window.Height}");
+        Console.WriteLine($"Modal scale set to {ModalScale}");
     }
 
     private void ShowModal(Media media)
@@ -83,7 +86,6 @@
     private void WindowResized(object? _, BrowserWindowSize window)
     {
         Window = window;
-        Console.WriteLine($"Window resized to {window.Width}x{window.Height}");
         SetModalScale();
         StateHasChanged();
     }
