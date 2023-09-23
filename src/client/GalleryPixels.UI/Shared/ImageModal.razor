@@ -21,36 +21,27 @@
     <!-- The close button -->
     <a class="fixed z-90 top-4 right-8 p-1 rounded-xl bg-surface/90 dark:bg-surface-dark/90 text-on-surface dark:text-on-surface-dark cursor-pointer"
        @onclick="CloseModal">
-        <div class="hidden sm:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </div>
-        <div class="sm:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-14 md:w-12 lg:w-8 h-auto">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
     </a>
 
     <!-- The zoom button -->
-    <a class="fixed z-90 top-4 p-1 rounded-xl bg-surface/90 dark:bg-surface-dark/90 text-on-surface dark:text-on-surface-dark text-2xl font-bold flex space-x-2 leading-none">
+    <a class="fixed z-90 top-4 p-1 rounded-xl bg-surface/90 dark:bg-surface-dark/90 text-on-surface dark:text-on-surface-dark flex space-x-2 leading-none">
         <div class="cursor-pointer" @onclick="ZoomInClicked">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle">
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-14 md:w-12 lg:w-8 h-auto">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="12" y1="8" x2="12" y2="16"></line>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
             </svg>
         </div>
-        <span class="leading-5">@((ModalScale * 100).ToString("0", NumberCultureInfo))%</span>
+        <span class="flex items-center font-bold text-5xl sm:text-4xl md:text-3xl lg:text-2xl h-auto">@((ModalScale * 100).ToString("0", NumberCultureInfo))%</span>
         <div class="cursor-pointer" @onclick="ZoomOutClicked">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle">
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-14 md:w-12 lg:w-8 h-auto">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
             </svg>
