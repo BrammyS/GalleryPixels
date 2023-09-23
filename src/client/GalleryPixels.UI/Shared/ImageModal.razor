@@ -101,12 +101,12 @@
 
     private void ZoomInClicked()
     {
-        ZoomIn(0.1);
+        ZoomIn(0.25);
     }
 
     private void ZoomOutClicked()
     {
-        ModalScale -= 0.1;
+        ModalScale -= 0.25;
 
         if (ModalScale < 1)
             ModalScale = 1;
@@ -160,7 +160,7 @@
 
     private void ZoomIn(double value)
     {
-        ModalScale += 1;
+        ModalScale += value;
 
         if (ModalScale > 5)
             ModalScale = 5;
