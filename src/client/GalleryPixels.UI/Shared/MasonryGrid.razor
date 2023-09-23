@@ -83,6 +83,7 @@
     private void WindowResized(object? _, BrowserWindowSize window)
     {
         Window = window;
+        Console.WriteLine($"Window resized to {window.Width}x{window.Height}");
         SetModalScale();
         StateHasChanged();
     }
