@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/*Blazor loading screen*/
 .loader div {
     animation-duration: 0.5s;
 }
