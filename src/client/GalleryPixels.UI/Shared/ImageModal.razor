@@ -1,0 +1,118 @@
+﻿@inject IResizeListener Listener
+@using GalleryPixels.UI.Domain.Models
+@using System.Globalization
+@implements IDisposable
+
+<!-- Img modal -->
+<div class="@(ModalImg != null ? "" : "hidden") fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
+    <!--  Clickable close background -->
+    <div class="fixed z-90 inset-0 transition-opacity cursor-pointer" @onclick="CloseModal"></div>
+
+    <img style="@(ModalScale > 1 ? $"--tw-scale-x: {ModalScale.ToString(NumberCultureInfo)}; --tw-scale-y: {ModalScale.ToString(NumberCultureInfo)}" : "")"
+         class="max-h-full max-w-full object-contain transform" src="@ModalImg?.Url" alt=""
+         @onmousedown="Callback"/>
+
+    <!-- The close button -->
+    <a class="fixed z-90 top-4 right-8 p-1 rounded-xl bg-surface/90 dark:bg-surface-dark/90 text-on-surface dark:text-on-surface-dark text-5xl font-bold cursor-pointer"
+       @onclick="CloseModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </a>
+
+    <!-- The zoom button -->
+    <a class="fixed z-90 top-4 p-1 rounded-xl bg-surface/90 dark:bg-surface-dark/90 text-on-surface dark:text-on-surface-dark text-2xl font-bold flex space-x-2 leading-none">
+        <div class="cursor-pointer" @onclick="ZoomInClicked">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+        </div>
+        <span class="leading-5">@((ModalScale * 100).ToString("0", NumberCultureInfo))%</span>
+        <div class="cursor-pointer" @onclick="ZoomOutClicked">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+        </div>
+    </a>
+</div>
+
+@code
+{
+    [Parameter, EditorRequired]
+    public Media? ModalImg { get; set; }
+
+    [Parameter]
+    public EventCallback<Media?> ModalImgChanged { get; set; }
+
+    private double ModalScale { get; set; }
+    private BrowserWindowSize? Window { get; set; }
+    private static readonly CultureInfo NumberCultureInfo = new("en-US");
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!firstRender) 
+            return;
+
+        Listener.OnResized += WindowResized;
+        SetModalScale();
+    }
+
+    private void SetModalScale()
+    {
+        if (Window == null || ModalImg == null)
+            return;
+
+        var scaleW = Window.Width * 0.95 / ModalImg.Width;
+        var scaleH = Window.Height * 0.95 / ModalImg.Height;
+
+        ModalScale = Math.Min(scaleH, scaleW);
+
+        if (ModalScale < 1)
+            ModalScale = 1;
+    }
+
+    private Task CloseModal()
+    {
+        ModalImg = null;
+        return ModalImgChanged.InvokeAsync(ModalImg);
+    }
+
+    private void WindowResized(object? _, BrowserWindowSize window)
+    {
+        Window = window;
+        SetModalScale();
+        StateHasChanged();
+    }
+
+    private void ZoomInClicked()
+    {
+        ModalScale += 0.1;
+
+        if (ModalScale > 5)
+            ModalScale = 5;
+    }
+
+    private void ZoomOutClicked()
+    {
+        ModalScale -= 0.1;
+
+        if (ModalScale < 1)
+            ModalScale = 1;
+    }
+
+    void IDisposable.Dispose()
+    {
+        Listener.OnResized -= WindowResized;
+    }
+
+    private static void Callback(MouseEventArgs obj)
+    {
+    }
+}
