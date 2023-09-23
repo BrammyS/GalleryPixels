@@ -1,6 +1,7 @@
 ﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
 /*Blazor loading screen*/
 .loader div {

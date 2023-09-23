@@ -70,6 +70,10 @@ module.exports = {
             spacing: {
                 '22': '5.5rem',
                 '26': '6.5rem'
+            },
+            screens: {
+                'xs': '480px',
+                '3xl': '1600px',
             }
         },
         fontFamily: {
