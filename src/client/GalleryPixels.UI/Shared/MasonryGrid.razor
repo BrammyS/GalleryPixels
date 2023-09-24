@@ -9,14 +9,19 @@
 <div class="@MasonryGridId" style="width: 100% !important;">
     @foreach (var media in Media)
     {
-        <div class="flex justify-center items-center max-w-3xl w-[100%] md:w-[40%] 2xl:w-[25%] px-6 md:px-0" @onclick="() => ShowModal(media)">
+        <div class="flex justify-center items-center max-w-3xl w-[100%] md:w-[40%] 2xl:w-[25%] px-6 md:px-0"
+             @onclick="() => ShowModal(media)">
             <!--suppress RequiredAttributes -->
-            <img class="lazyload rounded-md w-full object-contain cursor-pointer" data-src="@media.Url" width="@media.Width" height="@media.Height" alt="">
+            <img class="lazyload rounded-md w-full object-contain cursor-pointer transition-opacity duration-700" 
+                 data-src="@media.Url" 
+                 width="@media.Width" 
+                 height="@media.Height" 
+                 alt="">
         </div>
     }
 </div>
 
-@if(ModalImg is not null)
+@if (ModalImg is not null)
 {
     <ImageModal @bind-ModalImg="ModalImg"/>
 }

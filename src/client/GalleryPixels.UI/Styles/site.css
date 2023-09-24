@@ -3,6 +3,15 @@
 @tailwind utilities;
 @tailwind screens;
 
+/* fade image in after load */
+.lazyload,
+.lazyloading {
+    opacity: 0 !important;
+}
+.lazyloaded {
+    opacity: 1 !important;
+}
+
 /*Blazor loading screen*/
 .loader div {
     animation-duration: 0.5s;
