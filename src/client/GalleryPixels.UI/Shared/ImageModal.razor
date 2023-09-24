@@ -4,7 +4,7 @@
 @implements IDisposable
 
 <!-- Img modal -->
-<div class="@(ModalImg != null ? "" : "hidden") fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
+<div class="@(ModalImg != null ? "" : "hidden") fixed top-0 left-0 z-80 w-screen h-[100lvh] bg-black/70 flex justify-center items-center">
     <!--  Clickable close background -->
     <div class="fixed z-90 inset-0 transition-opacity cursor-pointer" @onclick="CloseModal"></div>
 
