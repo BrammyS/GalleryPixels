@@ -112,11 +112,6 @@
             ModalScale = 1;
     }
 
-    void IDisposable.Dispose()
-    {
-        Listener.OnResized -= WindowResized;
-    }
-
     private string GetScaleStyle()
         => $"--tw-scale-x: {ModalScale.ToString(NumberCultureInfo)}; --tw-scale-y: {ModalScale.ToString(NumberCultureInfo)};";
 
@@ -164,5 +159,10 @@
 
         if (ModalScale > 5)
             ModalScale = 5;
+    }
+
+    void IDisposable.Dispose()
+    {
+        Listener.OnResized -= WindowResized;
     }
 }
