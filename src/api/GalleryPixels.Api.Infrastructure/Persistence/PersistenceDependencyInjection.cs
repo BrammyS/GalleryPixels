@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GalleryPixels.Api.Infrastructure.Persistence;
 
-public static class ServiceCollectionExtensions
+public static class PersistenceDependencyInjection
 {
     public static IServiceCollection AddMongoDb(this IServiceCollection services)
     {
