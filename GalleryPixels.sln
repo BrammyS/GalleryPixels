@@ -24,6 +24,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryPixels.Api.Applicati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryPixels.Api.Infrastructure", "src\api\GalleryPixels.Api.Infrastructure\GalleryPixels.Api.Infrastructure.csproj", "{E503F54B-66AD-42B4-903B-8C63B720477E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{3F3F5EFE-6F61-410C-BFFB-D6B021EBA933}"
+	ProjectSection(SolutionItems) = preProject
+		Solution items\Secrets.md = Solution items\Secrets.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
