@@ -1,5 +1,5 @@
 ﻿# Setup base image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
 LABEL maintainer="BrammyS <https://github.com/BrammyS>"
 LABEL org.label-schema.name="GalleryPixels"
@@ -12,7 +12,7 @@ EXPOSE 80
 EXPOSE 443
 
 # Setup build image
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Setup workspace
 WORKDIR /src
