@@ -10,3 +10,22 @@ updates:
     target-branch: "dev" # The branch that dependabot will target
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions-deps:
+        patterns:
+          - "*"
+            
+  - package-ecosystem: "npm"
+    directory: "src/client/GalleryPixels.UI"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
+    groups:
+      npm-deps:
+        patterns:
+          - "*"
