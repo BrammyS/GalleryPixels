@@ -4,10 +4,10 @@
     "minifycss": "minify ./Styles/temp.site.min.css > ./wwwroot/css/site.min.css"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.29",
-    "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.4.17",
-    "minify": "^10.5.2"
+    "@tailwindcss/postcss": "^4.0.12",
+    "minify": "^13.0.0",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^4.0.0"
   }
 }

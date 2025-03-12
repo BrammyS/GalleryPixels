@@ -1,7 +1,63 @@
-﻿@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind screens;
+@import 'tailwindcss';
+@config '../tailwind.config.js';
+
+/* Enable dark mode via a class (so “dark:” variants work) */
+/*noinspection CssInvalidAtRule*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Define your design tokens directly in CSS */
+/*noinspection CssInvalidAtRule*/
+@theme {
+    /* Font families */
+    --font-helvetica: "Helvetica Neue", sans-serif;
+    --font-helvetica-black: "Helvetica Neue black", sans-serif;
+    
+    /* Misc colors */
+    --color-ultra-light-gray: #fcfcfc;
+    --color-discord: #7289DA;
+
+    /* Main color palette */
+    --color-primary: #009c82;
+    --color-primary-dark: #53ceb1;
+    --color-primary-variant: #85cee4;
+    --color-primary-variant-dark: #b8ffff;
+
+    --color-secondary: #c6c5bf;
+    --color-secondary-variant: #c6c5bf;
+    --color-secondary-dark: #f9f8f2;
+
+    --color-background: #F4F4F4;
+    --color-background-dark: #121212;
+
+    --color-surface: #FFFFFF;
+    --color-surface-dark: #333333;
+
+    --color-error: #B00020;
+    --color-error-dark: #CF6679;
+
+    --color-on-primary: #FFFFFF;
+    --color-on-primary-dark: #000000;
+    --color-on-primary-variant: #000000;
+    --color-on-primary-variant-dark: #000000;
+    --color-on-secondary: #000000;
+    --color-on-secondary-dark: #000000;
+    --color-on-background: #000000;
+    --color-on-background-dark: #FFFFFF;
+    --color-on-surface: #000000;
+    --color-on-surface-dark: #FFFFFF;
+    --color-on-error: #FFFFFF;
+    --color-on-error-dark: #000000;
+}
+
+/* Custom Utility: “drag-none” */
+/*noinspection CssInvalidAtRule*/
+@utility drag-none {
+    -webkit-user-drag: element;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
 
 /* fade image in after load */
 .lazyload,
