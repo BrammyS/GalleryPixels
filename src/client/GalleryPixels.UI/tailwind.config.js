@@ -1,5 +1,3 @@
-const plugin = require('tailwindcss/plugin');
-
 module.exports = {
     darkMode: 'class',
     future: {
@@ -82,19 +80,7 @@ module.exports = {
         }
     },
     variants: {},
-    plugins: [
-        plugin(function ({ addUtilities }) {
-            addUtilities({
-                '.drag-none': {
-                    '-webkit-user-drag': 'none',
-                    '-khtml-user-drag': 'none',
-                    '-moz-user-drag': 'none',
-                    '-o-user-drag': 'none',
-                    'user-drag': 'none'
-                }
-            });
-        })
-    ]
+    plugins: []
 }
 
 function withOpacityValue(hex) {

@@ -20,9 +20,6 @@
   }
 }
 
-@layer utilities {
-}
-
 /* fade image in after load */
 .lazyload,
 .lazyloading {
