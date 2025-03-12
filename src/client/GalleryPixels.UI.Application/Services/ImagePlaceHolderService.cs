@@ -20,7 +20,8 @@ public class ImagePlaceHolderService : IImagePlaceHolderService
         new(7728, 5152, "https://minio.proxied.brammys.com/screenshots/2025/03/20230810-DSCF4356.JPG"),
         new(5618, 3745, "https://minio.proxied.brammys.com/screenshots/2025/03/20230911-DSCF3023.JPG"),
         new(4696, 7044, "https://minio.proxied.brammys.com/screenshots/2025/03/20231129-DSCF7243.JPG"),
-        new(4335, 6502, "https://minio.proxied.brammys.com/screenshots/2025/03/20230814-DSCF5303.JPG")
+        new(4335, 6502, "https://minio.proxied.brammys.com/screenshots/2025/03/20230814-DSCF5303.JPG"),
+        new(547, 498, "https://minio.proxied.brammys.com/screenshots/2025/03/cHgLfNXN8G5UJbsw.png")
     ];
 
     public Media GetRandomImagePlaceHolder()

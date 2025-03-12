@@ -52,7 +52,7 @@
 /* Custom Utility: “drag-none” */
 /*noinspection CssInvalidAtRule*/
 @utility drag-none {
-    -webkit-user-drag: element;
+    -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;

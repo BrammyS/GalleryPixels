@@ -8,8 +8,8 @@
     <!--  Clickable close background -->
     <div class="fixed z-50 inset-0 transition-opacity cursor-pointer" @onclick="CloseModal"></div>
 
-    <img style="@(ModalScale > 1 ? GetScaleStyle() : string.Empty) @GetTranslatePos()"
-         class="max-h-full max-w-full z-60 object-contain transform cursor-grab select-none drag-none @(_panning ? "cursor-grabbing" : string.Empty)"
+    <img class="max-h-full max-w-full z-60 object-contain transform cursor-grab select-none drag-none @(_panning ? "cursor-grabbing" : string.Empty)"
+         style="scale: @(ModalScale.ToString(NumberCultureInfo)); translate: @(_translateX.ToString(NumberCultureInfo))px @(_translateY.ToString(NumberCultureInfo))px;"
          src="@ModalImg?.Url"
          alt=""
          draggable="false"

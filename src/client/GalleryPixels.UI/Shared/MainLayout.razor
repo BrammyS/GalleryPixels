@@ -10,24 +10,24 @@
 
 @code{
 
-#if DEBUG
-    /// <inheritdoc />
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await AddDebugTailwindCdn(firstRender);
-    }
-
-    private async Task AddDebugTailwindCdn(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await Js.InvokeVoidAsync("loadJs", "https://cdn.tailwindcss.com/");
-        }
-
-    // This needs the be loaded on every refresh because god has designed it this way.
-    // Otherwise things will just start breaking for some reason?!?!?!?!?!
-        await Js.InvokeVoidAsync("loadJs", $"{MyNavigationManager.BaseUri}/js/TailwindCdnConfig.js");
-    }
-#endif
+// #if DEBUG
+//     /// <inheritdoc />
+//     protected override async Task OnAfterRenderAsync(bool firstRender)
+//     {
+//         await AddDebugTailwindCdn(firstRender);
+//     }
+//
+//     private async Task AddDebugTailwindCdn(bool firstRender)
+//     {
+//         if (firstRender)
+//         {
+//             await Js.InvokeVoidAsync("loadJs", "https://cdn.tailwindcss.com/");
+//         }
+//
+//     // This needs the be loaded on every refresh because god has designed it this way.
+//     // Otherwise things will just start breaking for some reason?!?!?!?!?!
+//         await Js.InvokeVoidAsync("loadJs", $"{MyNavigationManager.BaseUri}/js/TailwindCdnConfig.js");
+//     }
+// #endif
 
 }
