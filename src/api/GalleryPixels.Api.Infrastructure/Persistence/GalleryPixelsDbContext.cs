@@ -2,7 +2,7 @@
 
 namespace GalleryPixels.Api.Infrastructure.Persistence;
 
-public class GalleryPixelsDbContext : DbContext
+public class GalleryPixelsDbContext(DbContextOptions<GalleryPixelsDbContext> context) : DbContext(context)
 {
     public async Task ExecuteMigrationAsync()
     {
