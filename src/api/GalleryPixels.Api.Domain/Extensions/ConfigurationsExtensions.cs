@@ -40,11 +40,29 @@ public static class ConfigurationsExtensions
         return GetAndValidateKey(configuration, key);
     }
 
+    public static string GetJwtIssuer(this IConfiguration configuration)
+    {
+        const string key = "Jwt:Issuer";
+        return GetAndValidateKey(configuration, key);
+    }
+
+    public static string GetJwtAudience(this IConfiguration configuration)
+    {
+        const string key = "Jwt:Audience";
+        return GetAndValidateKey(configuration, key);
+    }
+
+    public static string GetJwtKey(this IConfiguration configuration)
+    {
+        const string key = "Jwt:Key";
+        return GetAndValidateKey(configuration, key);
+    }
+
     private static string GetAndValidateKey(IConfiguration configuration, string key)
     {
         return GetKey(configuration, key) ?? throw new ArgumentNullException(key, $"{key} is not set in the configuration file.");
     }
-    
+
     private static string? GetKey(IConfiguration configuration, string key)
     {
         return configuration[key];
