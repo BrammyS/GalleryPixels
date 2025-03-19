@@ -5,6 +5,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1F55782B-EA12-4CB8-BD86-68B194372F7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{38294A73-6051-4208-801C-BCC41F970E83}"
+	ProjectSection(SolutionItems) = preProject
+		src\client\cloudflare-pages-build.sh = src\client\cloudflare-pages-build.sh
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{1EEE8922-623A-4C9D-963E-BF42D8B64AE5}"
 EndProject
@@ -27,6 +30,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{3F3F5EFE-6F61-410C-BFFB-D6B021EBA933}"
 	ProjectSection(SolutionItems) = preProject
 		Solution items\Secrets.md = Solution items\Secrets.md
+		Solution items\docker-compose.yaml = Solution items\docker-compose.yaml
 	EndProjectSection
 EndProject
 Global

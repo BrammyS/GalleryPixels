@@ -243,3 +243,6 @@ _Pvt_Extensions
 /NDependOut
 /CleanArchitecture.ndproj
 update.bat
+src/api/GalleryPixels.Api/appsettings.Development.json
+
+src/api/GalleryPixels.Api/appsettings.json
