@@ -22,5 +22,3 @@ dotnet user-secrets remove "KEY" --project "../src/api/GalleryPixels.Api/Gallery
 | Key                |
 |--------------------|
 | S3:SecretKey       |
-| Mongodb:Username   |
-| Mongodb:Password   |

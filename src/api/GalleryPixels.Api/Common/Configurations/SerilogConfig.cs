@@ -1,5 +1,4 @@
-﻿using GalleryPixels.Api.Infrastructure.Common;
-using Serilog;
+﻿using Serilog;
 using Serilog.Events;
 
 namespace GalleryPixels.Api.Common.Configurations;
@@ -26,7 +25,6 @@ internal static class SerilogConfig
                 writeTo =>
                 {
                     writeTo.Console();
-                    writeTo.MongoDb(configuration);
                 }
             )
             .CreateLogger();
@@ -39,8 +37,8 @@ internal static class SerilogConfig
     /// <param name="httpContext">The current HTTP Context</param>
     internal static void EnrichFromRequest(IDiagnosticContext diagnosticContext, HttpContext httpContext)
     {
-        diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString());
-        diagnosticContext.Set("UserAgent", httpContext.Request.Headers["User-Agent"].FirstOrDefault());
+        diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString()!);
+        diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.FirstOrDefault()!);
     }
 
     /// <summary>
