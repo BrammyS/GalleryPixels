@@ -1,0 +1,46 @@
+﻿@page "/Login"
+@using GalleryPixels.UI.Application.Services
+@inject IGalleryPixelsApiService GalleryPixelsApiService
+
+<div class="flex items-center h-screen w-full">
+    <div class="w-full bg-on-background dark:bg-surface-dark text-on-surface dark:text-on-surface-dark rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+        <span class="block w-full text-xl uppercase font-bold mb-4">Login</span>
+        <div class="mb-4">
+            <div class="mb-4 md:w-full">
+                <label for="email" class="block text-xs mb-1">Username or Email</label>
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="email" name="email" id="email" placeholder="Username or Email">
+            </div>
+            <div class="mb-6 md:w-full">
+                <label for="password" class="block text-xs mb-1">Password</label>
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="Password">
+            </div>
+            <button class="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded" @onclick="OnLoginClickAsync">Login</button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private async Task OnLoginClickAsync()
+    {
+        var result = await GalleryPixelsApiService.PostAsync<Response, Temp>("v1/auth/login", new Temp
+        {
+            Email = "string@example.com",
+            Password = "string"
+        });
+        
+        Console.WriteLine(result.Token);
+    }
+    
+    public class Temp
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+    
+    public class Response
+    {
+        public string Token { get; set; }
+    }
+
+}

@@ -1,4 +1,4 @@
-﻿using GalleryPixels.UI.Application.Services;
+﻿using GalleryPixels.UI.Infrastructure.Services;
 using Microsoft.JSInterop;
 
 namespace GalleryPixels.UI.Services;
