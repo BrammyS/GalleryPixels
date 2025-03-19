@@ -74,7 +74,7 @@ jobs:
 
       - name: Build and push api image
         id: push
-        uses: docker/build-push-action@6
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./src/api/GalleryPixels.Api/Dockerfile
@@ -115,7 +115,7 @@ jobs:
 
       - name: Build and push api image
         id: push
-        uses: docker/build-push-action@6
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./src/client/GalleryPixels.UI/Dockerfile
