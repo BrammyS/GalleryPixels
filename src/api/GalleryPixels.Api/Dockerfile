@@ -1,5 +1,5 @@
 ﻿# Setup base image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS base
 
 LABEL maintainer="BrammyS <https://github.com/BrammyS>"
 LABEL org.label-schema.name="GalleryPixels"
@@ -7,28 +7,29 @@ LABEL org.label-schema.description="The official API for GalleryPixels"
 LABEL org.label-schema.vendor="Esendam Software"
 LABEL org.label-schema.url="https://GalleryPixels.com"
 
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-# Setup build image
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
 # Setup workspace
 WORKDIR /src
 COPY /src .
-WORKDIR /src/api/GalleryPixels.Api
+EXPOSE 80
 
 # Restore dependencies
-RUN dotnet restore "GalleryPixels.Api.csproj"
+RUN dotnet restore "/src/api/GalleryPixels.Api/GalleryPixels.Api.csproj" --runtime linux-musl-x64
 
 # Publish the application
-RUN dotnet publish "GalleryPixels.Api.csproj" \
-    -c Release \
-    -o /app/publish \
-    --no-restore
+RUN dotnet publish "/src/api/GalleryPixels.Api/GalleryPixels.Api.csproj" \
+    -c Release -o /app/publish \
+    --no-restore \
+    --runtime linux-musl-x64 \
+    --self-contained true \
+    /p:PublishSingleFile=true
 
-FROM base AS final
+# Setup final runtime image
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-alpine AS final
+
+# upgrade musl to remove potential vulnerability
+RUN apk upgrade musl
 WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "GalleryPixels.Api.dll"]
+COPY --from=base /app/publish .
+
+EXPOSE 8080
+ENTRYPOINT ["./GalleryPixels.Api"]
