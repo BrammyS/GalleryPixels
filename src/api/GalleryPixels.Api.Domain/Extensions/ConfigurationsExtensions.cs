@@ -34,40 +34,10 @@ public static class ConfigurationsExtensions
         return GetAndValidateKey(configuration, key);
     }
 
-    public static string GetMongodbHost(this IConfiguration configuration)
+    public static string GetPostgresConnectionString(this IConfiguration configuration)
     {
-        const string key = "Mongodb:Host";
+        const string key = "ConnectionStrings:Postgres";
         return GetAndValidateKey(configuration, key);
-    }
-
-    public static string GetMongodbPort(this IConfiguration configuration)
-    {
-        const string key = "Mongodb:Port";
-        return GetAndValidateKey(configuration, key);
-    }
-
-    public static string GetMongodbDatabase(this IConfiguration configuration)
-    {
-        const string key = "Mongodb:Database";
-        return GetAndValidateKey(configuration, key);
-    }
-
-    public static string GetMongodbAuthDatabase(this IConfiguration configuration)
-    {
-        const string key = "Mongodb:AuthDatabase";
-        return GetAndValidateKey(configuration, key);
-    }
-
-    public static string? GetMongodbUsername(this IConfiguration configuration)
-    {
-        const string key = "Mongodb:Username";
-        return GetKey(configuration, key);
-    }
-
-    public static string? GetMongodbPassword(this IConfiguration configuration)
-    {
-        const string key = "Mongodb:Password";
-        return GetKey(configuration, key);
     }
 
     private static string GetAndValidateKey(IConfiguration configuration, string key)
