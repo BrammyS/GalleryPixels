@@ -34,6 +34,12 @@ public static class ConfigurationsExtensions
         return GetAndValidateKey(configuration, key);
     }
 
+    public static string GetPostgresConnectionString(this IConfiguration configuration)
+    {
+        const string key = "ConnectionStrings:Postgres";
+        return GetAndValidateKey(configuration, key);
+    }
+
     private static string GetAndValidateKey(IConfiguration configuration, string key)
     {
         return GetKey(configuration, key) ?? throw new ArgumentNullException(key, $"{key} is not set in the configuration file.");

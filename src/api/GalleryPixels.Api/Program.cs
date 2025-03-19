@@ -11,7 +11,7 @@ try
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-    builder.Services.RegisterApi();
+    builder.Services.RegisterApi(builder.Configuration);
     builder.Host.UseSerilog();
 
     var app = builder.Build();
