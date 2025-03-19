@@ -42,13 +42,13 @@ public static class ConfigurationsExtensions
 
     public static string GetJwtIssuer(this IConfiguration configuration)
     {
-        const string key = "Jwt:Issuer";
+        const string key = "Jwt:ValidIssuer";
         return GetAndValidateKey(configuration, key);
     }
 
     public static string GetJwtAudience(this IConfiguration configuration)
     {
-        const string key = "Jwt:Audience";
+        const string key = "Jwt:ValidAudience";
         return GetAndValidateKey(configuration, key);
     }
 
