@@ -6,6 +6,7 @@ using GalleryPixels.Api.Domain;
 using GalleryPixels.Api.Domain.Extensions;
 using Mediator;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -17,7 +18,7 @@ public static class DependencyInjection
     public static IServiceCollection RegisterApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterDomain();
-
+        services.AddAuthorization();
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddMediator(
@@ -55,8 +56,19 @@ public static class DependencyInjection
                     };
                 }
             );
-        
-        services.AddAuthorization();
+
+        services.Configure<IdentityOptions>(
+            options =>
+            {
+                options.User.AllowedUserNameCharacters = configuration.GetAllowedUserNameCharacters();
+                options.User.RequireUniqueEmail = configuration.GetRequiredUniqueUserEmail();
+                options.Password.RequireDigit = configuration.GetRequirePasswordDigit();
+                options.Password.RequireLowercase = configuration.GetRequirePasswordLowercase();
+                options.Password.RequireUppercase = configuration.GetRequirePasswordUppercase();
+                options.Password.RequireNonAlphanumeric = configuration.GetRequirePasswordNonAlphanumeric();
+                options.Password.RequiredLength = configuration.GetRequiredPasswordLength();
+            }
+        );
 
         return services;
     }

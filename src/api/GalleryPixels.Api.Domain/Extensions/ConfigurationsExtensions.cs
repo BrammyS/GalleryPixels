@@ -58,6 +58,48 @@ public static class ConfigurationsExtensions
         return GetAndValidateKey(configuration, key);
     }
 
+    public static string GetAllowedUserNameCharacters(this IConfiguration configuration)
+    {
+        const string key = "Identity:AllowedUserNameCharacters";
+        return GetAndValidateKey(configuration, key);
+    }
+
+    public static bool GetRequiredUniqueUserEmail(this IConfiguration configuration)
+    {
+        const string key = "Identity:RequireUniqueEmail";
+        return bool.Parse(GetAndValidateKey(configuration, key));
+    }
+
+    public static bool GetRequirePasswordDigit(this IConfiguration configuration)
+    {
+        const string key = "Identity:Password:RequireDigit";
+        return bool.Parse(GetAndValidateKey(configuration, key));
+    }
+
+    public static bool GetRequirePasswordLowercase(this IConfiguration configuration)
+    {
+        const string key = "Identity:Password:RequireLowercase";
+        return bool.Parse(GetAndValidateKey(configuration, key));
+    }
+
+    public static bool GetRequirePasswordUppercase(this IConfiguration configuration)
+    {
+        const string key = "Identity:Password:RequireUppercase";
+        return bool.Parse(GetAndValidateKey(configuration, key));
+    }
+
+    public static bool GetRequirePasswordNonAlphanumeric(this IConfiguration configuration)
+    {
+        const string key = "Identity:Password:RequireNonAlphanumeric";
+        return bool.Parse(GetAndValidateKey(configuration, key));
+    }
+
+    public static int GetRequiredPasswordLength(this IConfiguration configuration)
+    {
+        const string key = "Identity:Password:RequiredLength";
+        return int.Parse(GetAndValidateKey(configuration, key));
+    }
+
     private static string GetAndValidateKey(IConfiguration configuration, string key)
     {
         return GetKey(configuration, key) ?? throw new ArgumentNullException(key, $"{key} is not set in the configuration file.");
