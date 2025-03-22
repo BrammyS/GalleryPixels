@@ -4,7 +4,7 @@ namespace GalleryPixels.UI.Services;
 
 public class ToastService
 {
-    public event Func<ToastData, Task> OnShow = null!;
+    public event Func<ToastData, Task>? OnShow;
 
     private void ShowToast(ToastData toastData)
     {

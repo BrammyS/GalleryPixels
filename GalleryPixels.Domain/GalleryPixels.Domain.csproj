@@ -8,8 +8,4 @@
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
-    <ItemGroup>
-        <Using Include="NUnit.Framework"/>
-    </ItemGroup>
-
 </Project>

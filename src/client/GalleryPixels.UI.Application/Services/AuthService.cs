@@ -1,6 +1,5 @@
 ﻿using GalleryPixels.Domain.Requests;
 using GalleryPixels.Domain.Responses;
-using GalleryPixels.Domain.Responses.Register;
 using GalleryPixels.UI.Application.Builders;
 using GalleryPixels.UI.Application.Providers;
 using GalleryPixels.UI.Domain.Services;

@@ -2,9 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using GalleryPixels.UI.Application;
-using GalleryPixels.UI.Application.Builders;
 using GalleryPixels.UI.Application.Services;
-using Microsoft.Extensions.Logging;
 
 namespace GalleryPixels.UI.Infrastructure.Services;
 
