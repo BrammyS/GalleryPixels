@@ -2,6 +2,7 @@
 
 public interface IAuthStateProvider
 {
-    Task MarkUserAsAuthenticated(string token);
-    Task MarkUserAsLoggedOut();
+    Task AuthenticatedAsync(string token);
+    Task LogoutAsync();
+    ValueTask<string?> GetTokenAsync();
 }

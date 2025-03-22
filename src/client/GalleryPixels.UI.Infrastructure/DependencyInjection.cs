@@ -16,7 +16,7 @@ public static class DependencyInjection
             InfrastructureConstants.GalleryPixelsApiClientName,
             client =>
             {
-                client.BaseAddress = new Uri(configuration.GetGalleryPixelsApiUrl());
+                client.BaseAddress = new Uri(configuration.GetGalleryPixelsApiUrl(), UriKind.Absolute);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             }
         );

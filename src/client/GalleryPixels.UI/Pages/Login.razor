@@ -1,46 +1,46 @@
 ﻿@page "/Login"
-@using GalleryPixels.UI.Application.Services
-@inject IGalleryPixelsApiService GalleryPixelsApiService
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
 
 <div class="flex items-center h-screen w-full">
     <div class="w-full bg-on-background dark:bg-surface-dark text-on-surface dark:text-on-surface-dark rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
         <span class="block w-full text-xl uppercase font-bold mb-4">Login</span>
-        <div class="mb-4">
+        <form class="mb-4" @onsubmit="LoginAsync">
             <div class="mb-4 md:w-full">
                 <label for="email" class="block text-xs mb-1">Username or Email</label>
-                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="email" name="email" id="email" placeholder="Username or Email">
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="email" name="email" id="email" placeholder="Username or Email" @bind="Email">
             </div>
             <div class="mb-6 md:w-full">
                 <label for="password" class="block text-xs mb-1">Password</label>
-                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="Password">
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="Password" @bind="Password">
             </div>
-            <button class="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded" @onclick="OnLoginClickAsync">Login</button>
-        </div>
+            <button class="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded" @onclick="LoginAsync">Login</button>
+        </form>
     </div>
 </div>
 
 @code {
 
-    private async Task OnLoginClickAsync()
+    private string Email { get; set; } = string.Empty;
+    private string Password { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
     {
-        var result = await GalleryPixelsApiService.PostAsync<Response, Temp>("v1/auth/login", new Temp
+        if (await AuthService.IsAuthenticated())
         {
-            Email = "string@example.com",
-            Password = "string"
-        });
-        
-        Console.WriteLine(result.Token);
+            NavigationManager.NavigateTo("/");
+        }
     }
-    
-    public class Temp
+
+    private async Task LoginAsync()
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-    
-    public class Response
-    {
-        public string Token { get; set; }
+        if (await AuthService.AuthenticateAsync(Email, Password))
+        {
+            if (NavigationManager.Uri == "/login")
+            {
+                NavigationManager.NavigateTo("/");
+            }
+        }
     }
 
 }

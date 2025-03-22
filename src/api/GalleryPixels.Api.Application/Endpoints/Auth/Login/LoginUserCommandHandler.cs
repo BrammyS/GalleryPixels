@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using GalleryPixels.Api.Domain.Extensions;
+using GalleryPixels.Domain.Responses;
 using Mediator;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

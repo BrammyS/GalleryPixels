@@ -1,4 +1,5 @@
-﻿using Mediator;
+﻿using GalleryPixels.Domain.Responses.Register;
+using Mediator;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 

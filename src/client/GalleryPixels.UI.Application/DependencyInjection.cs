@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using GalleryPixels.UI.Application.Providers;
+﻿using GalleryPixels.UI.Application.Providers;
 using GalleryPixels.UI.Application.Services;
 using GalleryPixels.UI.Domain;
 using GalleryPixels.UI.Domain.Services;
@@ -15,6 +14,8 @@ public static class DependencyInjection
         services.AddAuthorizationCore();
         services.AddScoped<IImagePlaceHolderService, ImagePlaceHolderService>();
         services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IJwtService, JwtService>();
         
         return services.RegisterDomain();
     }

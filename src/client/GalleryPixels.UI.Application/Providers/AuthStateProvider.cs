@@ -1,44 +1,55 @@
-﻿namespace GalleryPixels.UI.Application.Providers;
-
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using System.Security.Claims;
+using GalleryPixels.UI.Application.Services;
+using GalleryPixels.UI.Domain.Models;
 using GalleryPixels.UI.Domain.Providers;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Text;
-using Services;
+using GalleryPixels.UI.Domain.Services;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Logging;
 
-public class AuthStateProvider(ILocalStorageService localStorageService) : AuthenticationStateProvider, IAuthStateProvider
+namespace GalleryPixels.UI.Application.Providers;
+
+public class AuthStateProvider(
+    ILocalStorageService localStorageService,
+    IJwtService jwtService,
+    ILogger<AuthStateProvider> logger
+) : AuthenticationStateProvider, IAuthStateProvider
 {
-    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
-    {
-        var token = await localStorageService.GetStringAsync(ApplicationConstants.AuthTokenKey);
-        var identity = string.IsNullOrEmpty(token)
-            ? new ClaimsIdentity()
-            : new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
+    private static readonly AuthenticationState NotAuthenticatedState = new(new ClaimsPrincipal());
+    private AuthUser? _authUser;
 
-        return new AuthenticationState(new ClaimsPrincipal(identity));
-    }
-
-    public async Task MarkUserAsAuthenticated(string token)
+    public async Task AuthenticatedAsync(string token)
     {
         await localStorageService.SetStringAsync(ApplicationConstants.AuthTokenKey, token);
+        SetAuthUser(token);
         NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
     }
 
-    public async Task MarkUserAsLoggedOut()
+    public async Task LogoutAsync()
     {
+        _authUser = null;
         await localStorageService.RemoveAsync(ApplicationConstants.AuthTokenKey);
         NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
     }
 
-    private static IEnumerable<Claim> ParseClaimsFromJwt(string token)
+    public ValueTask<string?> GetTokenAsync()
     {
-        var payload = JsonSerializer.Deserialize<Dictionary<string, object>>(Encoding.UTF8.GetString(Convert.FromBase64String(token.Split('.')[1])));
-        if (payload is null)
+        return localStorageService.GetStringAsync(ApplicationConstants.AuthTokenKey);
+    }
+
+    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        var token = await localStorageService.GetStringAsync(ApplicationConstants.AuthTokenKey);
+        if (token is not null && _authUser is null)
         {
-            throw new InvalidOperationException("Invalid token");
+            SetAuthUser(token);
         }
 
-        return payload.Select(x => new Claim(x.Key, x.Value.ToString()!));
+        return _authUser is not null ? new AuthenticationState(_authUser.ClaimsPrincipal) : NotAuthenticatedState;
+    }
+
+    private void SetAuthUser(string token)
+    {
+        var principal = jwtService.Deserialize(token);
+        _authUser = new AuthUser { Token = token, ClaimsPrincipal = principal };
     }
 }
