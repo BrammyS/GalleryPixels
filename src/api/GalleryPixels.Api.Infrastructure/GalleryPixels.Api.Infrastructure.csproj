@@ -7,13 +7,14 @@
     </PropertyGroup>
     
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GalleryPixels.Api.Application\GalleryPixels.Api.Application.csproj"/>
+        <ProjectReference Include="..\GalleryPixels.Api.Application\GalleryPixels.Api.Application.csproj" />
     </ItemGroup>
 
 

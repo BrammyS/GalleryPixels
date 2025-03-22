@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		Solution items\docker-compose.yaml = Solution items\docker-compose.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryPixels.Domain", "GalleryPixels.Domain\GalleryPixels.Domain.csproj", "{0E978FDC-D91C-4CEF-8891-838B31FFE45D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,7 @@ Global
 		{67BFABF8-3924-465B-9E3C-2CFD6ED0329B} = {1EEE8922-623A-4C9D-963E-BF42D8B64AE5}
 		{E528FB6A-4662-4C18-8BF1-734FC4A401A2} = {1EEE8922-623A-4C9D-963E-BF42D8B64AE5}
 		{E503F54B-66AD-42B4-903B-8C63B720477E} = {1EEE8922-623A-4C9D-963E-BF42D8B64AE5}
+		{0E978FDC-D91C-4CEF-8891-838B31FFE45D} = {1F55782B-EA12-4CB8-BD86-68B194372F7D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C9A83902-77A2-4511-B272-280938EAAEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -83,5 +86,9 @@ Global
 		{E503F54B-66AD-42B4-903B-8C63B720477E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E503F54B-66AD-42B4-903B-8C63B720477E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E503F54B-66AD-42B4-903B-8C63B720477E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E978FDC-D91C-4CEF-8891-838B31FFE45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E978FDC-D91C-4CEF-8891-838B31FFE45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E978FDC-D91C-4CEF-8891-838B31FFE45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E978FDC-D91C-4CEF-8891-838B31FFE45D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,6 @@
 using GalleryPixels.Api;
 using GalleryPixels.Api.Common.Configurations;
+using GalleryPixels.Api.Infrastructure.Persistence;
 using Serilog;
 
 try
@@ -27,12 +28,17 @@ try
 
     app.UseHttpsRedirection();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = SerilogConfig.EnrichFromRequest);
 
     app.MapControllers();
-
+    
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<GalleryPixelsDbContext>();
+    await dbContext.ExecuteMigrationAsync().ConfigureAwait(false);
+    
     app.Run();
 
     return 0;

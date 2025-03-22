@@ -6,14 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GalleryPixels.Api.Controllers;
 
+[AllowAnonymous]
 [Route("api/version")]
 [Route("api/v{apiVersion}/version")]
-public class VersionController : ApiController
+public class VersionController(IMediator mediator) : ApiController(mediator)
 {
-    public VersionController(IMediator mediator) : base(mediator)
-    {
-    }
-
     /// <summary>
     ///     Shows the current version and the build date of the API.
     /// </summary>

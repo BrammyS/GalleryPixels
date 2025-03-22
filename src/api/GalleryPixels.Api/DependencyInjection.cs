@@ -12,7 +12,7 @@ public static class DependencyInjection
         services.AddSerilog();
         
         return services
-            .RegisterApplication()
+            .RegisterApplication(configuration)
             .RegisterInfrastructure(configuration);
     }
 }
