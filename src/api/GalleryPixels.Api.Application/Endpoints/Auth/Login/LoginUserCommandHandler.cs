@@ -18,10 +18,10 @@ public class LoginUserCommandHandler(
 {
     public async ValueTask<LoginUserResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await userManager.FindByEmailAsync(request.Email);
+        var user = await userManager.FindByEmailAsync(request.Email).ConfigureAwait(false);
         if (user == null) return new LoginUserResponse(null);
 
-        var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+        var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, false).ConfigureAwait(false);
         if (!result.Succeeded) return new LoginUserResponse(null);
 
         var token = GenerateJwtToken(user);
