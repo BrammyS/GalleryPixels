@@ -4,14 +4,12 @@ using GalleryPixels.UI.Domain.Models;
 using GalleryPixels.UI.Domain.Providers;
 using GalleryPixels.UI.Domain.Services;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.Logging;
 
 namespace GalleryPixels.UI.Application.Providers;
 
 public class AuthStateProvider(
     ILocalStorageService localStorageService,
-    IJwtService jwtService,
-    ILogger<AuthStateProvider> logger
+    IJwtService jwtService
 ) : AuthenticationStateProvider, IAuthStateProvider
 {
     private static readonly AuthenticationState NotAuthenticatedState = new(new ClaimsPrincipal());
