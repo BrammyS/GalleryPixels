@@ -1,3 +1,3 @@
-﻿namespace GalleryPixels.Api.Application.Endpoints.Auth.Register;
+﻿namespace GalleryPixels.Domain.Responses.Register;
 
 public record RegisterUserErrorDetails(string Code, string Description);

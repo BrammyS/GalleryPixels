@@ -1,4 +1,4 @@
-﻿namespace GalleryPixels.Api.Application.Endpoints.Auth.Login;
+﻿namespace GalleryPixels.Domain.Responses;
 
 public record LoginUserResponse(string? Token)
 {
