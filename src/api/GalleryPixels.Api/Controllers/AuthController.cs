@@ -16,7 +16,7 @@ public class AuthController(IMediator mediator) : ApiController(mediator)
     public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
     {
         var response = await Mediator.Send(command).ConfigureAwait(false);
-        if (response == null) return Ok();
+        if (response.IsSuccess) return Ok(response);
 
         return BadRequest(response);
     }

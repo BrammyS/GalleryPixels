@@ -56,10 +56,11 @@ public class JwtService : IJwtService
     private static byte[] FromUrlBase64(string jwtSegment)
     {
         var fixedBase64 = jwtSegment.Replace('-', '+').Replace('_', '/');
-        fixedBase64 += (jwtSegment.Length % 4) switch
+        switch (fixedBase64.Length % 4)
         {
-            2 => "==", 3 => "=", _ => throw new Exception("Illegal base64url string!")
-        };
+            case 2: fixedBase64 += "=="; break;
+            case 3: fixedBase64 += "="; break;
+        }
 
         return Convert.FromBase64String(fixedBase64);
     }

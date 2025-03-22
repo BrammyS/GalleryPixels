@@ -5,16 +5,16 @@ using Microsoft.Extensions.Logging;
 
 namespace GalleryPixels.Api.Application.Endpoints.Auth.Register;
 
-public class RegisterUserCommandHandler(ILogger<RegisterUserCommandHandler> logger, UserManager<IdentityUser> userManager) : IRequestHandler<RegisterUserCommand, RegisterUserResponse?>
+public class RegisterUserCommandHandler(ILogger<RegisterUserCommandHandler> logger, UserManager<IdentityUser> userManager) : IRequestHandler<RegisterUserCommand, RegisterUserResponse>
 {
-    public async ValueTask<RegisterUserResponse?> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async ValueTask<RegisterUserResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         var user = new IdentityUser { UserName = request.Username, Email = request.Email };
-        var result = await userManager.CreateAsync(user, request.Password);
+        var result = await userManager.CreateAsync(user, request.Password).ConfigureAwait(false);
 
         if (result.Succeeded)
         {
-            return null;
+            return new RegisterUserResponse([]);
         }
 
         if (logger.IsEnabled(LogLevel.Debug))

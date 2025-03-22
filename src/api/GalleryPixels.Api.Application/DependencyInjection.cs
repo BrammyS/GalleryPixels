@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 using FluentValidation;
+using GalleryPixels.Api.Application.Common.CustomAuthValidators;
 using GalleryPixels.Api.Application.Common.Pipelines;
 using GalleryPixels.Api.Domain;
 using GalleryPixels.Api.Domain.Extensions;
@@ -72,6 +73,8 @@ public static class DependencyInjection
             }
         );
 
+        services.AddTransient<IUserValidator<IdentityUser>, CustomUserValidator>();
+        
         return services;
     }
 }

@@ -1,0 +1,56 @@
+﻿@page "/Auth/Register"
+@inject IAuthService AuthService
+@inject ToastService ToastService
+@inject NavigationManager NavigationManager
+
+<div class="flex items-center h-screen w-full">
+    <div class="w-full bg-on-background dark:bg-surface-dark text-on-surface dark:text-on-surface-dark rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+        <span class="block w-full text-xl uppercase font-bold mb-4">Login</span>
+        <form @onsubmit="RegisterAsync">
+            <div class="mb-4 md:w-full">
+                <label for="username" class="block text-xs mb-1">Username</label>
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="text" name="username" id="username" placeholder="Username" @bind="Username">
+            </div>
+            <div class="mb-4 md:w-full">
+                <label for="email" class="block text-xs mb-1">Email</label>
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="email" name="email" id="email" placeholder="Email" @bind="Email">
+            </div>
+            <div class="mb-6 md:w-full">
+                <label for="password" class="block text-xs mb-1">Password</label>
+                <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="Password" @bind="Password">
+            </div>
+
+            <button class="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded">Register</button>
+
+            @foreach (var message in Messages)
+            {
+                <div id="message-box" class="text-red-500 text-sm mt-2" style="display: @(ShowMessage ? "block" : "none")">
+                    @message
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+@code {
+    private string Username { get; set; } = string.Empty;
+    private string Email { get; set; } = string.Empty;
+    private string Password { get; set; } = string.Empty;
+    private bool ShowMessage { get; set; }
+    private IReadOnlyList<string> Messages { get; set; } = new List<string>();
+    
+    private async Task RegisterAsync()
+    {
+        var result = await AuthService.RegisterAsync(Username, Email, Password);
+        if(result.IsSuccess)
+        {
+            ToastService.ShowSuccess("Registered successfully");
+            NavigationManager.NavigateTo("/auth/login");
+            return;
+        }
+        
+        ShowMessage = true;
+        Messages = result.Errors.Select(e => e.Description).ToList();
+    }
+
+}
