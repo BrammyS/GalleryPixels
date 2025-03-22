@@ -14,18 +14,18 @@ public class LoginUserCommandHandler(
     UserManager<IdentityUser> userManager,
     SignInManager<IdentityUser> signInManager,
     IConfiguration configuration
-) : IRequestHandler<LoginUserCommand, LoginUserResponse>
+) : IRequestHandler<LoginUserCommand, LoginUserCommandResult>
 {
-    public async ValueTask<LoginUserResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    public async ValueTask<LoginUserCommandResult> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         var user = await userManager.FindByEmailAsync(request.Email).ConfigureAwait(false);
-        if (user == null) return new LoginUserResponse(null);
+        if (user == null) return new LoginUserCommandResult(new LoginUserResponse(null), null);
 
         var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, false).ConfigureAwait(false);
-        if (!result.Succeeded) return new LoginUserResponse(null);
+        if (!result.Succeeded) return new LoginUserCommandResult(new LoginUserResponse(null), null);
 
         var token = GenerateJwtToken(user);
-        return new LoginUserResponse(token);
+        return new LoginUserCommandResult(new LoginUserResponse(token), user);
     }
 
     private string GenerateJwtToken(IdentityUser user)
