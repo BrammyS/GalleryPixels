@@ -16,7 +16,14 @@ try
     builder.Host.UseSerilog();
 
     var origins = builder.Configuration.GetSection("CorsOrigins").Get<string[]>() ?? [];
-    builder.Services.AddCors(x => x.AddDefaultPolicy(c => c.WithOrigins(origins)));
+    Console.WriteLine($"Origins: {string.Join(", ", origins)}");
+    builder.Services.AddCors(
+        x => x.AddDefaultPolicy(
+            c => c.WithOrigins(origins)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+        )
+    );
 
     var app = builder.Build();
 
@@ -30,6 +37,7 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseRouting();
 
     app.UseCors();
 
