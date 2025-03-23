@@ -5,9 +5,9 @@
 
 version: 2
 updates:
-  - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    target-branch: "dev" # The branch that dependabot will target
+  - package-ecosystem: "nuget"
+    directory: "/"
+    target-branch: "main"
     schedule:
       interval: "weekly"
     groups:
@@ -17,6 +17,7 @@ updates:
 
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "main"
     schedule:
       interval: "weekly"
     groups:
@@ -26,7 +27,7 @@ updates:
             
   - package-ecosystem: "npm"
     directory: "src/client/GalleryPixels.UI"
-    target-branch: "dev"
+    target-branch: "main"
     schedule:
       interval: "weekly"
     groups:
