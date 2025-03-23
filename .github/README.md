@@ -17,7 +17,7 @@
 <h3 align="center">GalleryPixels</h3>
 
   <p align="center">
-    A Photography and Videography catalog website.
+    A selfhosted Photography and Videography catalog website.
     <br />
     <a href="https://github.com/BrammyS/GalleryPixels/wiki"><strong>Explore the docs »</strong></a>
     <br />
