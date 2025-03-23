@@ -14,6 +14,9 @@ COPY /src .
 # install node
 RUN apk add --no-cache nodejs npm
 
+# Rename appsettings
+RUN mv "/src/client/GalleryPixels.UI/wwwroot/appsettings.TEMPLATE.json" "/src/client/GalleryPixels.UI/wwwroot/appsettings.json"
+
 # Restore dependencies
 RUN dotnet restore "/src/client/GalleryPixels.UI/GalleryPixels.UI.csproj"
 
