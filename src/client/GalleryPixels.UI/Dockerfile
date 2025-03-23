@@ -14,6 +14,9 @@ COPY /src .
 # install node
 RUN apk add --no-cache nodejs npm
 
+# Rename appsettings
+RUN mv "/src/client/GalleryPixels.UI/wwwroot/appsettings.TEMPLATE.json" "/src/client/GalleryPixels.UI/wwwroot/appsettings.json"
+
 # Restore dependencies
 RUN dotnet restore "/src/client/GalleryPixels.UI/GalleryPixels.UI.csproj"
 
@@ -26,14 +29,14 @@ RUN dotnet publish "/src/client/GalleryPixels.UI/GalleryPixels.UI.csproj" \
 # Serve wwwroot with nginx
 FROM nginx:alpine AS final
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /app
 COPY --from=base /app/publish/wwwroot .
 
 # Create and copy Nginx config
 RUN echo 'server { \
     listen 80; \
     server_name localhost; \
-    root /usr/share/nginx/html; \
+    root /app; \
     index index.html; \
     location / { \
         try_files $uri $uri/ /index.html; \
@@ -44,7 +47,7 @@ RUN echo 'server { \
     } \
 }' > /etc/nginx/conf.d/default.conf
 
-RUN chmod -R 755 /usr/share/nginx/html
+RUN chmod -R 755 /app
 
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

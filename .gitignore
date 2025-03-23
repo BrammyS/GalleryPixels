@@ -246,3 +246,9 @@ update.bat
 src/api/GalleryPixels.Api/appsettings.Development.json
 
 src/api/GalleryPixels.Api/appsettings.json
+
+src/client/GalleryPixels.UI/wwwroot/appsettings.Development.json
+
+appsettings.api.json
+
+appsettings.ui.json

@@ -1,0 +1,71 @@
+﻿@using GalleryPixels.UI.Domain.Models
+@inject IToastService ToastService
+@implements IDisposable
+
+@if (ShowMessage)
+{
+    <div class="absolute bottom-0 right-0 ">
+
+        @foreach (var message in Messages)
+        {
+            <div class="p-4 m-4 bg-surface dark:bg-surface-dark rounded-lg shadow-lg border-l-4 @GetBorderClass(message.Value.Type)">
+                <div class="flex items-center">
+                    <div class="text-2xl">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                        <div class="font-bold text-lg">Message</div>
+                        <div class="text-sm">@message.Value.Message</div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private bool ShowMessage { get; set; } = false;
+    private Dictionary<Guid, ToastData> Messages { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        ToastService.OnShow += ShowToastAsync;
+    }
+
+    private string GetBorderClass(ToastType type)
+    {
+        return type switch
+        {
+            ToastType.Success => "border-green-500", ToastType.Error => "border-red-500", ToastType.Warning => "border-yellow-500", _ => "border-blue-500"
+        };
+    }
+
+    private async Task ShowToastAsync(ToastData toastData)
+    {
+        var guid = Guid.NewGuid();
+        Messages.Add(guid, toastData);
+        ShowMessage = true;
+
+        await InvokeAsync(StateHasChanged);
+
+        if (toastData.DismissAfter > 0)
+        {
+            await Task.Delay(toastData.DismissAfter * 1000);
+            await HideMessageAsync(guid);
+        }
+    }
+
+    private Task HideMessageAsync(Guid guid)
+    {
+        Messages.Remove(guid);
+        ShowMessage = Messages.Any();
+        InvokeAsync(StateHasChanged);
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        ToastService.OnShow -= ShowToastAsync;
+    }
+
+}

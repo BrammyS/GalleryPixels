@@ -24,8 +24,18 @@
     <ItemGroup>
         <ProjectReference Include="..\GalleryPixels.UI.Application\GalleryPixels.UI.Application.csproj"/>
         <ProjectReference Include="..\GalleryPixels.UI.Infrastructure\GalleryPixels.UI.Infrastructure.csproj"/>
+    </ItemGroup>
 
-
+    <ItemGroup>
+      <Content Update="wwwroot\appsettings.Development.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\appsettings.TEMPLATE.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\appsettings.Development.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -34,6 +44,5 @@
         <DependentUpon>Dockerfile</DependentUpon>
       </Content>
     </ItemGroup>
-
 
 </Project>

@@ -1,5 +1,6 @@
 using GalleryPixels.Api;
 using GalleryPixels.Api.Common.Configurations;
+using GalleryPixels.Api.Infrastructure.Persistence;
 using Serilog;
 
 try
@@ -14,10 +15,20 @@ try
     builder.Services.RegisterApi(builder.Configuration);
     builder.Host.UseSerilog();
 
+    var origins = builder.Configuration.GetSection("CorsOrigins").Get<string[]>() ?? [];
+    Console.WriteLine($"Origins: {string.Join(", ", origins)}");
+    builder.Services.AddCors(
+        x => x.AddDefaultPolicy(
+            c => c.WithOrigins(origins)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+        )
+    );
+
     var app = builder.Build();
 
     SerilogConfig.Configure(app.Services);
-    
+
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
@@ -26,12 +37,20 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseRouting();
 
+    app.UseCors();
+
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = SerilogConfig.EnrichFromRequest);
 
     app.MapControllers();
+
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<GalleryPixelsDbContext>();
+    await dbContext.ExecuteMigrationAsync().ConfigureAwait(false);
 
     app.Run();
 

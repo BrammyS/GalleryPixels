@@ -1,24 +1,17 @@
 ﻿using GalleryPixels.UI.Application.Services;
 using Microsoft.JSInterop;
 
-namespace GalleryPixels.UI.Services;
+namespace GalleryPixels.UI.Infrastructure.Services;
 
-public class MagicGrid : IMagicGrid
+public class MagicGrid(IJSRuntime jSRuntime) : IMagicGrid
 {
-    private readonly IJSRuntime _jsRuntime;
-
-    public MagicGrid(IJSRuntime jSRuntime)
-    {
-        _jsRuntime = jSRuntime;
-    }
-
     public ValueTask InitAsync(
         string containerSelector,
         int gutterSize,
         int items
     )
     {
-        return _jsRuntime.InvokeVoidAsync(
+        return jSRuntime.InvokeVoidAsync(
             "initMasonry",
             containerSelector,
             gutterSize,
