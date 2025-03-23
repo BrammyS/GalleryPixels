@@ -25,12 +25,6 @@
 
 @code {
 
-    /// <summary>
-    ///     The bind value of the checked state
-    /// </summary>
-    [Parameter]
-    public bool Checked { get; set; }
-
     private bool _isDark;
 
     /// <inheritdoc />
@@ -38,10 +32,7 @@
     {
         if (firstRender)
         {
-            Console.WriteLine("First Render");
             _isDark = await DarkModeService.IsDarkMode();
-            Console.WriteLine(_isDark);
-            
             StateHasChanged();
         }
     }
