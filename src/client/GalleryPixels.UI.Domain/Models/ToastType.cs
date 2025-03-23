@@ -1,4 +1,4 @@
-﻿namespace GalleryPixels.UI.Enums;
+﻿namespace GalleryPixels.UI.Domain.Models;
 
 public enum ToastType
 {
