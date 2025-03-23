@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\GalleryPixels.Domain\GalleryPixels.Domain.csproj" />
+      <ProjectReference Include="..\..\GalleryPixels.Domain\GalleryPixels.Domain.csproj" />
     </ItemGroup>
 
 

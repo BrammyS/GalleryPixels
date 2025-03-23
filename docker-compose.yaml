@@ -1,0 +1,47 @@
+# noinspection ComposeUnknownKeys
+name: "gallery-pixels"
+
+services:
+  gallerypixels_api:
+    image: ghcr.io/brammys/gallerypixels.api:latest
+    restart: unless-stopped
+    container_name: gallerypixels_api
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+    depends_on:
+      - gallerypixels_pg
+    volumes:
+      - ./appsettings.api.json:/app/appsettings.json
+
+  gallerypixels_ui:
+    image: ghcr.io/brammys/gallerypixels.ui:latest
+    restart: unless-stopped
+    container_name: gallerypixels_ui
+    ports:
+      - "80:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+    volumes:
+      - ./appsettings.ui.json:/app/appsettings.json
+
+  gallerypixels_pg:
+    image: postgres
+    restart: unless-stopped
+    container_name: gallerypixels_pg
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: gallerypixels_pg_user
+      POSTGRES_PASSWORD: strong_password
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U gallerypixels_pg_user" ]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - gallerypixels_pgdata:/var/lib/postgresql/data
+
+volumes:
+  gallerypixels_pgdata:

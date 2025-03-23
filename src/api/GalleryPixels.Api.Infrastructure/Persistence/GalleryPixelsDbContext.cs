@@ -8,7 +8,6 @@ public class GalleryPixelsDbContext(DbContextOptions<GalleryPixelsDbContext> con
 {
     public async Task ExecuteMigrationAsync()
     {
-        await Database.EnsureCreatedAsync().ConfigureAwait(false);
         await Database.MigrateAsync().ConfigureAwait(false);
     }
 }

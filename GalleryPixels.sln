@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		Solution items\docker-compose.yaml = Solution items\docker-compose.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryPixels.Domain", "GalleryPixels.Domain\GalleryPixels.Domain.csproj", "{0E978FDC-D91C-4CEF-8891-838B31FFE45D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryPixels.Domain", "src\GalleryPixels.Domain\GalleryPixels.Domain.csproj", "{0E978FDC-D91C-4CEF-8891-838B31FFE45D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\GalleryPixels.Domain\GalleryPixels.Domain.csproj" />
+        <ProjectReference Include="..\..\GalleryPixels.Domain\GalleryPixels.Domain.csproj" />
         <ProjectReference Include="..\GalleryPixels.Api.Domain\GalleryPixels.Api.Domain.csproj" />
     </ItemGroup>
 
