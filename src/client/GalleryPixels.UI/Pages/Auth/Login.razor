@@ -1,8 +1,7 @@
 ﻿@page "/Auth/Login"
-@using GalleryPixels.UI.Infrastructure.Services
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
-@inject ToastService ToastService
+@inject IToastService ToastService
 
 <div class="flex items-center h-screen w-full">
     <div class="w-full bg-surface dark:bg-surface-dark text-on-surface dark:text-on-surface-dark rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">

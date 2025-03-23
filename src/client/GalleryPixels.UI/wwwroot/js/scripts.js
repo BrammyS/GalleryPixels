@@ -1,33 +1,41 @@
 ﻿updateDarkModeSetting();
 
+// noinspection JSUnusedGlobalSymbols
 function useLightMode() {
     localStorage.theme = 'light';
     updateDarkModeSetting();
 }
 
+// noinspection JSUnusedGlobalSymbols
 function useDarkMode() {
     localStorage.theme = 'dark';
     updateDarkModeSetting();
 }
 
+// noinspection JSUnusedGlobalSymbols
 function respectOsPreference() {
     localStorage.removeItem('theme');
     updateDarkModeSetting();
 }
 
+// noinspection JSUnusedGlobalSymbols
 function updateDarkModeSetting() {
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
+        console.log("Added dark mode");
     } else {
         document.documentElement.classList.remove('dark')
+        console.log("Removed dark mode");
     }
 }
 
+// noinspection JSUnusedGlobalSymbols
 function isDarkMode() {
-    return localStorage.theme === 'dark';
+    return localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
 }
 
+// noinspection JSUnusedGlobalSymbols
 function initMasonry(containerSelector, gutterSize, items) {
     let magicGrid = new MagicGrid({
         container: containerSelector,
