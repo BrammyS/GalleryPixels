@@ -22,8 +22,11 @@ public static class DependencyInjection
         );
         
         services.AddBlazoredLocalStorage();
+        services.AddScoped<IMagicGrid, MagicGrid>();
         services.AddScoped<ILocalStorageService, LocalStorageService>();
         services.AddScoped<IGalleryPixelsApiService, GalleryPixelsApiService>();
+        services.AddSingleton<IToastService, ToastService>();
+
 
         return services;
     }

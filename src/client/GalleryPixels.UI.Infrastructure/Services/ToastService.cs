@@ -1,8 +1,9 @@
-﻿using GalleryPixels.UI.Enums;
+﻿using GalleryPixels.UI.Application.Services;
+using GalleryPixels.UI.Domain.Models;
 
-namespace GalleryPixels.UI.Services;
+namespace GalleryPixels.UI.Infrastructure.Services;
 
-public class ToastService
+public class ToastService : IToastService
 {
     public event Func<ToastData, Task>? OnShow;
 
