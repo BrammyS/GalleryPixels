@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Text;
-using FluentValidation;
+﻿using System.Text;
 using GalleryPixels.Api.Application.Common.CustomAuthValidators;
 using GalleryPixels.Api.Application.Common.Pipelines;
 using GalleryPixels.Api.Domain;
@@ -20,7 +18,6 @@ public static class DependencyInjection
     {
         services.RegisterDomain();
         services.AddAuthorization();
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddMediator(
             options =>

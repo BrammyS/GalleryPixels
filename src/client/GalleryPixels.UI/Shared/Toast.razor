@@ -24,7 +24,7 @@
 }
 
 @code {
-    private bool ShowMessage { get; set; } = false;
+    private bool ShowMessage { get; set; }
     private Dictionary<Guid, ToastData> Messages { get; set; } = [];
 
     protected override void OnInitialized()
