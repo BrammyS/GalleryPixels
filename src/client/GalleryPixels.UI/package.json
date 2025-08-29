@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.12",
-    "minify": "^14.0.0",
+    "minify": "^14.1.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.0.0"
