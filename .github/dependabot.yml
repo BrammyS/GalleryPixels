@@ -34,3 +34,6 @@ updates:
       npm-deps:
         patterns:
           - "*"
+
+reviewers:
+  - BrammyS
