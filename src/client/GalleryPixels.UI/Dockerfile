@@ -1,5 +1,5 @@
 ﻿# Setup base image
-FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS base
 
 LABEL maintainer="BrammyS <https://github.com/BrammyS>"
 LABEL org.label-schema.name="GalleryPixels"

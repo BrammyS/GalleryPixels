@@ -60,7 +60,7 @@ To get a local copy up and running follow these simple example steps.
 
 This is an example of how to list things you need to use the software and how to install them.
 * [Node.JS](https://nodejs.org/en/download) for tailwindcss
-* [.NET 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+* [.NET](https://dotnet.microsoft.com/en-us/download/dotnet)
 * Your favorite code editor
   
 

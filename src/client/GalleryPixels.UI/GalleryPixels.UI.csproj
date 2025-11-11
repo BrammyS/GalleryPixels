@@ -7,7 +7,7 @@
     </Target>
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -17,8 +17,8 @@
 
     <ItemGroup>
         <PackageReference Include="BlazorPro.BlazorSize" Version="9.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.10" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.10" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.0" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
@@ -39,8 +39,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.10" />
-      <PackageReference Include="Microsoft.NET.Sdk.WebAssembly.Pack" Version="9.0.10" />
+      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.0" />
+      <PackageReference Include="Microsoft.NET.Sdk.WebAssembly.Pack" Version="10.0.0" />
       <Content Include="..\..\..\.dockerignore">
         <Link>.dockerignore</Link>
         <DependentUpon>Dockerfile</DependentUpon>
