@@ -45,17 +45,18 @@ internal static class SerilogConfig
     ///     Sets up serilog to be used with <see cref="Microsoft.Extensions.Logging.ILogger" />.
     /// </summary>
     /// <param name="services">Specifies the contract for a collection of service descriptors</param>
-    internal static void AddSerilog(this IServiceCollection services)
+    internal static IServiceCollection AddSerilog(this IServiceCollection services)
     {
         services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
+        return services;
     }
 
     /// <summary>
-    ///     Checks whether or not a <see cref="LogEvent" /> should be excluded.
+    ///     Checks whether a <see cref="LogEvent" /> should be excluded.
     /// </summary>
     /// <param name="logEvent">The <see cref="LogEvent" />.</param>
     /// <returns>
-    ///     Whether or not a <see cref="LogEvent" /> should be excluded.
+    ///     Whether a <see cref="LogEvent" /> should be excluded.
     /// </returns>
     private static bool ShouldExcludeLog(this LogEvent logEvent)
     {
