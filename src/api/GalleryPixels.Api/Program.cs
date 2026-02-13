@@ -1,35 +1,34 @@
 using GalleryPixels.Api;
-using GalleryPixels.Api.Application.Services;
-using GalleryPixels.Api.Common.Configurations;
 using GalleryPixels.Api.Domain.Services;
 using GalleryPixels.Api.Infrastructure.Persistence;
 using Serilog;
 
 try
 {
-    Log.Information("Starting web host");
-
     var builder = WebApplication.CreateBuilder(args);
+    var logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(builder.Configuration)
+        .CreateBootstrapLogger();
+
+    logger.Information("Starting web host");
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.RegisterApi(builder.Configuration);
-    builder.Host.UseSerilog();
+    builder.Services.AddSerilog(logger);
+    builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
     var origins = builder.Configuration.GetSection("CorsOrigins").Get<string[]>() ?? [];
-    Console.WriteLine($"Origins: {string.Join(", ", origins)}");
-    builder.Services.AddCors(
-        x => x.AddDefaultPolicy(
-            c => c.WithOrigins(origins)
-                .AllowAnyHeader()
-                .AllowAnyMethod()
+    builder.Services.AddCors(x =>
+        x.AddDefaultPolicy(c => c.WithOrigins(origins)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
         )
     );
 
     var app = builder.Build();
 
-    SerilogConfig.Configure(app.Services);
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
@@ -46,8 +45,7 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
 
-    app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = SerilogConfig.EnrichFromRequest);
-
+    app.UseSerilogRequestLogging();
     app.MapControllers();
 
     using var scope = app.Services.CreateScope();
@@ -56,7 +54,7 @@ try
 
     var initialUserService = scope.ServiceProvider.GetRequiredService<IInitialUserService>();
     await initialUserService.CreateInitialUserAsync().ConfigureAwait(false);
-    
+
     app.Run();
 
     return 0;

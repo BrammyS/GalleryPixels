@@ -1,5 +1,4 @@
 ﻿using GalleryPixels.Api.Application;
-using GalleryPixels.Api.Common.Configurations;
 using GalleryPixels.Api.Infrastructure;
 
 namespace GalleryPixels.Api;
@@ -10,7 +9,6 @@ public static class DependencyInjection
     {
         return services
             .RegisterApplication(configuration)
-            .RegisterInfrastructure(configuration)
-            .AddSerilog();
+            .RegisterInfrastructure(configuration);
     }
 }

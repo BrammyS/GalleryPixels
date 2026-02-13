@@ -7,6 +7,7 @@ using GalleryPixels.Domain.Responses;
 using Mediator;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GalleryPixels.Api.Application.Endpoints.Auth.Login;
@@ -14,17 +15,27 @@ namespace GalleryPixels.Api.Application.Endpoints.Auth.Login;
 public class LoginUserCommandHandler(
     UserManager<User> userManager,
     SignInManager<User> signInManager,
-    IConfiguration configuration
+    IConfiguration configuration,
+    ILogger<LoginUserCommandHandler> logger
 ) : IRequestHandler<LoginUserCommand, LoginUserCommandResult>
 {
     public async ValueTask<LoginUserCommandResult> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         var user = await userManager.FindByEmailAsync(request.Email).ConfigureAwait(false);
-        if (user == null) return new LoginUserCommandResult(new LoginUserResponse(null), null);
+        if (user == null)
+        {
+            logger.LogDebug("Login attempt failed for non-existent email");
+            return new LoginUserCommandResult(new LoginUserResponse(null), null);
+        }
 
         var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, false).ConfigureAwait(false);
-        if (!result.Succeeded) return new LoginUserCommandResult(new LoginUserResponse(null), null);
+        if (!result.Succeeded)
+        {
+            logger.LogDebug("Login attempt failed for email");
+            return new LoginUserCommandResult(new LoginUserResponse(null), null);
+        }
 
+        logger.LogDebug("Login attempt succeeded");
         var token = GenerateJwtToken(user);
         return new LoginUserCommandResult(new LoginUserResponse(token), user);
     }
