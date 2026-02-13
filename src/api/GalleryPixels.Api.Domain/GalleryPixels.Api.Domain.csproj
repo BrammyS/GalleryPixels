@@ -10,15 +10,7 @@
         <PackageReference Include="FluentValidation" Version="12.1.1"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.3" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="10.0.2" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Microsoft.Extensions.Identity.Stores">
-        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\10.0.3\Microsoft.Extensions.Identity.Stores.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-
-
-
+    
 </Project>
