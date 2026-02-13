@@ -4,4 +4,4 @@ using Mediator;
 
 namespace GalleryPixels.Api.Application.Endpoints.Auth.Register;
 
-public record RegisterUserCommand(string Username, string Email, string Password) : RegisterUserRequest(Username, Email, Password), IRequest<RegisterUserResponse>;
+public record RegisterUserCommand(string Username, string Email, string Password, bool IsInitialUser = false) : RegisterUserRequest(Username, Email, Password), IRequest<RegisterUserResponse>;

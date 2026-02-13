@@ -1,8 +1,12 @@
 ﻿using System.Text;
+using GalleryPixels.Api.Application.Common.AppSettings;
 using GalleryPixels.Api.Application.Common.CustomAuthValidators;
 using GalleryPixels.Api.Application.Common.Pipelines;
+using GalleryPixels.Api.Application.Services;
 using GalleryPixels.Api.Domain;
+using GalleryPixels.Api.Domain.Entities;
 using GalleryPixels.Api.Domain.Extensions;
+using GalleryPixels.Api.Domain.Services;
 using Mediator;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -17,21 +21,36 @@ public static class DependencyInjection
     public static IServiceCollection RegisterApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterDomain();
-        services.AddAuthorization();
 
-        services.AddMediator(
-            options =>
+        RegisterMediator(services);
+        RegisterAuth(services, configuration);
+        RegisterIdentityConfigurations(services, configuration);
+        RegisterAppSettings(services, configuration);
+
+        services.AddTransient<IUserValidator<User>, CustomUserValidator>();
+        services.AddTransient<IInitialUserService, InitialUserService>();
+
+        return services;
+    }
+
+    private static void RegisterMediator(IServiceCollection services)
+    {
+        services.AddMediator(options =>
             {
                 options.Namespace = null;
                 options.ServiceLifetime = ServiceLifetime.Transient;
             }
         );
 
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformancePipelineBehaviour<,>)); // 1st
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>)); // 2nd
+        // Top to bottom is outer to inner.
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformancePipelineBehaviour<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+    }
 
-        services.AddAuthentication(
-                options =>
+    private static void RegisterAuth(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddAuthorization();
+        services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -39,8 +58,7 @@ public static class DependencyInjection
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 }
             )
-            .AddJwtBearer(
-                options =>
+            .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
@@ -56,9 +74,11 @@ public static class DependencyInjection
                     };
                 }
             );
+    }
 
-        services.Configure<IdentityOptions>(
-            options =>
+    private static void RegisterIdentityConfigurations(IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<IdentityOptions>(options =>
             {
                 options.User.AllowedUserNameCharacters = configuration.GetAllowedUserNameCharacters();
                 options.User.RequireUniqueEmail = configuration.GetRequiredUniqueUserEmail();
@@ -69,9 +89,10 @@ public static class DependencyInjection
                 options.Password.RequiredLength = configuration.GetRequiredPasswordLength();
             }
         );
+    }
 
-        services.AddTransient<IUserValidator<IdentityUser>, CustomUserValidator>();
-        
-        return services;
+    private static void RegisterAppSettings(IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<InitialUserSettings>(configuration.GetSection(InitialUserSettings.Position));
     }
 }

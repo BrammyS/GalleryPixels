@@ -1,4 +1,5 @@
-﻿using GalleryPixels.Api.Domain.Extensions;
+﻿using GalleryPixels.Api.Domain.Entities;
+using GalleryPixels.Api.Domain.Extensions;
 using GalleryPixels.Api.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ public static class DependencyInjection
     public static IServiceCollection RegisterInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContextPool<GalleryPixelsDbContext>(opt => opt.UseNpgsql(configuration.GetPostgresConnectionString()));
-        services.AddIdentity<IdentityUser, IdentityRole>()
+        services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<GalleryPixelsDbContext>()
             .AddDefaultTokenProviders();
         

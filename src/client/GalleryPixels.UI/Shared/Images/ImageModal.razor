@@ -112,12 +112,6 @@
             ModalScale = 1;
     }
 
-    private string GetScaleStyle()
-        => $"--tw-scale-x: {ModalScale.ToString(NumberCultureInfo)}; --tw-scale-y: {ModalScale.ToString(NumberCultureInfo)};";
-
-    private string GetTranslatePos()
-        => $"--tw-translate-x: {_translateX.ToString(NumberCultureInfo)}px; --tw-translate-y: {_translateY.ToString(NumberCultureInfo)}px;";
-
     private void MouseDown(MouseEventArgs mouseEvent)
     {
         if (_panning)

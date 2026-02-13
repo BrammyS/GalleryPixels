@@ -1,5 +1,7 @@
 using GalleryPixels.Api;
+using GalleryPixels.Api.Application.Services;
 using GalleryPixels.Api.Common.Configurations;
+using GalleryPixels.Api.Domain.Services;
 using GalleryPixels.Api.Infrastructure.Persistence;
 using Serilog;
 
@@ -52,6 +54,9 @@ try
     var dbContext = scope.ServiceProvider.GetRequiredService<GalleryPixelsDbContext>();
     await dbContext.ExecuteMigrationAsync().ConfigureAwait(false);
 
+    var initialUserService = scope.ServiceProvider.GetRequiredService<IInitialUserService>();
+    await initialUserService.CreateInitialUserAsync().ConfigureAwait(false);
+    
     app.Run();
 
     return 0;

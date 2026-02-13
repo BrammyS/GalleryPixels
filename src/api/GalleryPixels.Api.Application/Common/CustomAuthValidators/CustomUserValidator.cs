@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GalleryPixels.Api.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace GalleryPixels.Api.Application.Common.CustomAuthValidators;
 
-public class CustomUserValidator : IUserValidator<IdentityUser>
+public class CustomUserValidator : IUserValidator<User>
 {
-    public Task<IdentityResult> ValidateAsync(UserManager<IdentityUser> manager, IdentityUser user)
+    public Task<IdentityResult> ValidateAsync(UserManager<User> manager, User user)
     {
         var errors = new List<IdentityError>();
 

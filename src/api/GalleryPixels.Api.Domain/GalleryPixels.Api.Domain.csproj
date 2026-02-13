@@ -13,7 +13,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\" />
+      <Reference Include="Microsoft.Extensions.Identity.Stores">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\10.0.3\Microsoft.Extensions.Identity.Stores.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 

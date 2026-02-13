@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using GalleryPixels.Api.Domain.Entities;
 using GalleryPixels.Api.Domain.Extensions;
 using GalleryPixels.Domain.Responses;
 using Mediator;
@@ -11,8 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 namespace GalleryPixels.Api.Application.Endpoints.Auth.Login;
 
 public class LoginUserCommandHandler(
-    UserManager<IdentityUser> userManager,
-    SignInManager<IdentityUser> signInManager,
+    UserManager<User> userManager,
+    SignInManager<User> signInManager,
     IConfiguration configuration
 ) : IRequestHandler<LoginUserCommand, LoginUserCommandResult>
 {
@@ -28,7 +29,7 @@ public class LoginUserCommandHandler(
         return new LoginUserCommandResult(new LoginUserResponse(token), user);
     }
 
-    private string GenerateJwtToken(IdentityUser user)
+    private string GenerateJwtToken(User user)
     {
         var claims = new List<Claim> { new(JwtRegisteredClaimNames.Sub, user.Id), new(JwtRegisteredClaimNames.Email, user.Email ?? throw new NullReferenceException("Email can never be null!")) };
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetJwtKey()));

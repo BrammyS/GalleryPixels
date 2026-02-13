@@ -1,5 +1,6 @@
 ﻿using GalleryPixels.Api.Application.Endpoints.Auth.Login;
 using GalleryPixels.Api.Application.Endpoints.Auth.Register;
+using GalleryPixels.Domain.Requests;
 using Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,8 +14,9 @@ public class AuthController(IMediator mediator) : ApiController(mediator)
     private const string RefreshTokenCookieKey = "refreshToken";
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
+    public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
     {
+        var command = new RegisterUserCommand(request.Username, request.Email, request.Password);
         var response = await Mediator.Send(command).ConfigureAwait(false);
         if (response.IsSuccess) return Ok(response);
 
@@ -22,8 +24,9 @@ public class AuthController(IMediator mediator) : ApiController(mediator)
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+    public async Task<IActionResult> Login([FromBody] LoginUserRequest request)
     {
+        var command = new LoginUserCommand(request.Email, request.Password);
         var result = await Mediator.Send(command).ConfigureAwait(false);
         if (!result.Response.IsSuccess)
         {
