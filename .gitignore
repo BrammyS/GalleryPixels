@@ -246,7 +246,6 @@ update.bat
 
 # Appsettings files
 appsettings.Development.json
-appsettings.json
 
 # Logs dir
 logs/
