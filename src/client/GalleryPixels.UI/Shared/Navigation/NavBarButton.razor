@@ -18,11 +18,18 @@
     [Parameter]
     public bool PreventDefault { get; set; }
 
+    [Parameter]
+    public Action? Callback { get; set; }
+
     private void HandleClick()
     {
-        if (!PreventDefault)
+        if (PreventDefault)
         {
-            NavigationManager.NavigateTo(Href);
+            return;
         }
+
+        NavigationManager.NavigateTo(Href);
+        Callback?.Invoke();
     }
+
 }
