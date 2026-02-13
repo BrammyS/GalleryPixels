@@ -2,11 +2,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-12">
             <div class="flex items-center space-x-8">
-                <a Href="/" CssClass="text-lg font-bold text-primary dark:text-primary-dark">
+                <a href="/" class="text-lg font-bold text-primary dark:text-primary-dark">
                     GalleryPixels
                 </a>
 
-                <!-- Navigation Links (Desktop) -->
+                <!-- Desktop -->
                 <div class="hidden md:flex space-x-4">
                     <NavBarButton Href="/">Home</NavBarButton>
                     <NavBarButton Href="/gallery">Gallery</NavBarButton>
@@ -14,12 +14,23 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <!-- Profile Menu (Desktop) -->
-                <div class="hidden md:block">
-                    <ProfileMenu />
-                </div>
+                <!-- Desktop -->
+                <AuthorizeView>
+                    <Authorized>
+                        <div class="hidden md:block">
+                            <ProfileMenu/>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <div class="hidden md:block">
+                            <a href="/auth/login" class="px-3 py-1.5 text-sm text-on-surface dark:text-on-surface-dark hover:text-primary dark:hover:text-primary-dark transition-colors">
+                                Login
+                            </a>
+                        </div>
+                    </NotAuthorized>
+                </AuthorizeView>
 
-                <!-- Mobile menu button -->
+                <!-- Mobile -->
                 <button @onclick="ToggleMobileMenu" class="md:hidden p-1 rounded-md text-on-surface dark:text-on-surface-dark hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
                         aria-label="Toggle menu">
                     @if (_isMobileMenuOpen)
@@ -39,19 +50,31 @@
         </div>
     </div>
 
-    <!-- Mobile menu -->
     @if (_isMobileMenuOpen)
     {
         <div class="md:hidden px-4 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700 pt-2">
             <NavBarButton Href="/" IsMobile="true" Callback="ToggleMobileMenu">Home</NavBarButton>
             <NavBarButton Href="/gallery" IsMobile="true" Callback="ToggleMobileMenu">Gallery</NavBarButton>
-            <a href="/profile" @onclick="ToggleMobileMenu"
-               class="block text-on-surface dark:text-on-surface-dark hover:text-primary dark:hover:text-primary-dark transition-colors py-2 px-3 rounded-md">
-                Profile
-            </a>
-            <div class="py-2">
-                <LogoutButton Callback="ToggleMobileMenu"/>
-            </div>
+            
+            <AuthorizeView>
+                <Authorized>
+                    <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+                    <a href="/profile" @onclick="ToggleMobileMenu"
+                       class="block text-on-surface dark:text-on-surface-dark hover:text-primary dark:hover:text-primary-dark transition-colors py-2 px-3 rounded-md">
+                        Profile
+                    </a>
+                    <div class="py-2">
+                        <LogoutButton Callback="ToggleMobileMenu"/>
+                    </div>
+                </Authorized>
+                <NotAuthorized>
+                    <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+                    <a href="/auth/login" @onclick="ToggleMobileMenu"
+                       class="block text-on-surface dark:text-on-surface-dark hover:text-primary dark:hover:text-primary-dark transition-colors py-2 px-3 rounded-md">
+                        Login
+                    </a>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
     }
 </nav>
