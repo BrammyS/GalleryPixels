@@ -17,7 +17,7 @@ services:
       timeout: 5s
       retries: 10
     volumes:
-      - gallerypixels_pgdata:/var/lib/postgresql/data
+      - gallerypixels_pg:/var/lib/postgresql
 
 volumes:
-  gallerypixels_pgdata:
+  gallerypixels_pg:
