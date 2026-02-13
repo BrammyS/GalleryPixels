@@ -1,0 +1,28 @@
+﻿@inject NavigationManager NavigationManager
+<a href="@Href" class="@CssClass" @onclick="HandleClick" @onclick:preventDefault="@PreventDefault">
+    @ChildContent
+</a>
+
+@code {
+    private string CssClass => $"text-on-surface dark:text-on-surface-dark hover:text-primary dark:hover:text-primary-dark transition-colors {(IsMobile ? "block py-2 px-3 rounded-md" : "")}";
+
+    [Parameter, EditorRequired]
+    public string Href { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public bool IsMobile { get; set; }
+
+    [Parameter]
+    public bool PreventDefault { get; set; }
+
+    private void HandleClick()
+    {
+        if (!PreventDefault)
+        {
+            NavigationManager.NavigateTo(Href);
+        }
+    }
+}

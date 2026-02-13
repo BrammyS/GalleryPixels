@@ -1,0 +1,18 @@
+﻿@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+
+<button 
+    @onclick="HandleLogoutAsync" 
+    class="px-3 py-1.5 text-sm text-on-surface dark:text-on-surface-dark hover:text-primary dark:hover:text-primary-dark transition-colors">
+    Logout
+</button>
+
+@code {
+    private async Task HandleLogoutAsync()
+    {
+        await AuthService.LogoutAsync();
+        ToastService.ShowInfo("Logged out successfully");
+        NavigationManager.NavigateTo("/");
+    }
+}
