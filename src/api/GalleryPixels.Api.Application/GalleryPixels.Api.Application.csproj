@@ -8,8 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="12.1.1"/>
-        <PackageReference Include="Mediator.Abstractions" Version="3.0.1" />
-        <PackageReference Include="Mediator.SourceGenerator" Version="3.0.1">
+        <PackageReference Include="Mediator.Abstractions" Version="3.0.2" />
+        <PackageReference Include="Mediator.SourceGenerator" Version="3.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
