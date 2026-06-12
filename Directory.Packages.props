@@ -1,0 +1,56 @@
+<Project>
+  <PropertyGroup>
+	<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<!-- Blazor & WebAssembly -->
+	<PackageVersion Include="BlazorPro.BlazorSize" Version="9.0.0" />
+	<PackageVersion Include="Blazored.LocalStorage" Version="4.5.0" />
+	<PackageVersion Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.NET.Sdk.WebAssembly.Pack" Version="10.0.8" />
+
+	<!-- ASP.NET Core -->
+	<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.AspNetCore.Identity" Version="2.3.10" />
+	<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+	<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
+
+	<!-- Entity Framework Core -->
+	<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8" />
+	<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.2" />
+
+	<!-- Microsoft Extensions -->
+	<PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.Extensions.Identity.Stores" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.8" />
+	<PackageVersion Include="Microsoft.JSInterop" Version="10.0.8" />
+
+	<!-- Serilog -->
+	<PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" />
+	<PackageVersion Include="Serilog.Enrichers.AssemblyName" Version="2.0.0" />
+	<PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+	<PackageVersion Include="Serilog.Enrichers.Process" Version="3.0.0" />
+	<PackageVersion Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+	<PackageVersion Include="Serilog.Extensions.Hosting" Version="10.0.0" />
+	<PackageVersion Include="Serilog.Extensions.Logging" Version="10.0.0" />
+	<PackageVersion Include="Serilog.Sinks.Console" Version="6.1.1" />
+	<PackageVersion Include="Serilog.Sinks.File" Version="7.0.0" />
+
+	<!-- Mediator -->
+	<PackageVersion Include="Mediator.Abstractions" Version="3.0.2" />
+	<PackageVersion Include="Mediator.SourceGenerator" Version="3.0.2" />
+
+	<!-- Other -->
+	<PackageVersion Include="FluentValidation" Version="12.1.1" />
+	<PackageVersion Include="Scrutor" Version="7.0.0" />
+	<PackageVersion Include="Swashbuckle.AspNetCore" Version="10.2.1" />
+  </ItemGroup>
+</Project>
